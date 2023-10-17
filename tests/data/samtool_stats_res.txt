@@ -1,0 +1,45 @@
+# This file was produced by samtools stats (1.10+htslib-1.10) and can be plotted using plot-bamstats
+# This file contains statistics for all reads.
+# The command line was:  stats rna_example.bam
+# CHK, Checksum	[2]Read Names	[3]Sequences	[4]Qualities
+# CHK, CRC32 of reads which passed filtering followed by addition (32bit overflow)
+CHK	ab5903cd	bb8753ab	20f3f0b9
+# Summary Numbers. Use `grep ^SN | cut -f 2-` to extract this part.
+SN	raw total sequences:	3363576
+SN	filtered sequences:	0
+SN	sequences:	3363576
+SN	is sorted:	1
+SN	1st fragments:	3363576
+SN	last fragments:	0
+SN	reads mapped:	3363576
+SN	reads mapped and paired:	0	# paired-end technology bit set + both mates mapped
+SN	reads unmapped:	0
+SN	reads properly paired:	0	# proper-pair bit set
+SN	reads paired:	0	# paired-end technology bit set
+SN	reads duplicated:	0	# PCR or optical duplicate bit set
+SN	reads MQ0:	93477	# mapped and MQ=0
+SN	reads QC failed:	0
+SN	non-primary alignments:	0
+SN	total length:	252268200	# ignores clipping
+SN	total first fragment length:	252268200	# ignores clipping
+SN	total last fragment length:	0	# ignores clipping
+SN	bases mapped:	252268200	# ignores clipping
+SN	bases mapped (cigar):	252268200	# more accurate
+SN	bases trimmed:	0
+SN	bases duplicated:	0
+SN	mismatches:	2334087	# from NM fields
+SN	error rate:	9.252403e-03	# mismatches / bases mapped (cigar)
+SN	average length:	75
+SN	average first fragment length:	75
+SN	average last fragment length:	0
+SN	maximum length:	75
+SN	maximum first fragment length:	75
+SN	maximum last fragment length:	0
+SN	average quality:	24.9
+SN	insert size average:	0.0
+SN	insert size standard deviation:	0.0
+SN	inward oriented pairs:	0
+SN	outward oriented pairs:	0
+SN	pairs with other orientation:	0
+SN	pairs on different chromosomes:	0
+SN	percentage of properly paired reads (%):	0.0
