@@ -5,7 +5,7 @@ update:  # updates dependencies
 	poetry update
 
 test:
-	pytest -vv
+	poetry run pytest -vv
 
 publish-pypi:
 	scripts/publish-pypi
