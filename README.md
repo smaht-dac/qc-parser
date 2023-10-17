@@ -38,6 +38,8 @@ The currently supported QC tools are:
 - picard_CollectWgsMetrics
 - bamstats.py
 
+## Development
+
 If you want to **extract a new metric from an already supported QC tool**, add the metric to the `src/metrics_to_extract.py` in the appropriate section.
 
 If you want to **add suuport for a new QC tool**, you need to add a parser to `src/MetricsParser.py` and add the metrics you want to extract from the tool to  `src/metrics_to_extract.py`.
