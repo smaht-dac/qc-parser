@@ -27,3 +27,55 @@ def test_samtools():
     assert len(data["qc_values"]) == 15
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
+def test_picard_1():
+    pv = platform.python_version()
+    metrics = "./tests/data/picard_collectAlignmentSummaryMetrics.txt"
+    qc_values = f"tmp.picard1.qc_values.{pv}.json"
+    metrics_zip = f"tmp.picard1.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'picard_collectAlignmentSummaryMetrics' "
+        f"--metrics picard_CollectAlignmentSummaryMetrics {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+    
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["name"] == "picard_collectAlignmentSummaryMetrics"
+    assert len(data["qc_values"]) == 7
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+def test_samtools_picard():
+    pv = platform.python_version()
+    samtools_stats = "./tests/data/samtool_stats_res.txt"
+    metrics = "./tests/data/picard_collectAlignmentSummaryMetrics.txt"
+    qc_values = f"tmp.picard1.qc_values.{pv}.json"
+    metrics_zip = f"tmp.picard1.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'samtools picard' "
+        f"--metrics picard_CollectAlignmentSummaryMetrics {metrics} "
+        f"--metrics samtools {samtools_stats} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+    
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["name"] == "samtools picard"
+    assert len(data["qc_values"]) == 22
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
