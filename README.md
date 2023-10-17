@@ -25,10 +25,10 @@ In this example, the tool will parse the Samtools output file `/PATH/samtools.st
 
 The `metrics.zip` will contain the following files:
 ```
-/PATH/samtools.stats.txt
-/PATH/picard_cis_metrics.txt
-/PATH/additional_output_1.pdf
-/PATH/additional_output_2.tsv
+samtools.stats.txt
+picard_cis_metrics.txt
+additional_output_1.pdf
+additional_output_2.tsv
 ```
 
 The currently supported QC tools are:
