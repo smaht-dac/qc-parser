@@ -1,5 +1,5 @@
 import sys
-from src.metrics_to_extract import metrics
+from src.metrics_to_extract import metrics, SAMTOOLS_STATS, BAMSTATS, RNASEQQC, PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS, PICARD_COLLECT_INSERT_SIZE_METRICS, PICARD_COLLECT_WGS_METRICS
 from src.QMGeneric import QMValue
 from typing import List
 import json
@@ -7,25 +7,28 @@ import json
 
 class Parser:
 
-    def __init__(self, tool : str, metrics_file : str):
+    def __init__(self, tool: str, metrics_file: str):
 
         self.tool = tool
         self.path = metrics_file
 
     def parse(self):
 
-        if self.tool == "samtools":
+        if self.tool == SAMTOOLS_STATS:
             return self.parse_samtools_stats()
-        elif self.tool == "picard_CollectAlignmentSummaryMetrics":
+        elif self.tool == PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS:
             return self.parse_picard_CollectAlignmentSummaryMetrics()
-        elif self.tool == "picard_CollectInsertSizeMetrics":
+        elif self.tool == PICARD_COLLECT_INSERT_SIZE_METRICS:
             return self.parse_picard_CollectInsertSizeMetrics()
-        elif self.tool == "picard_CollectWgsMetrics":
+        elif self.tool == PICARD_COLLECT_WGS_METRICS:
             return self.parse_picard_CollectWgsMetrics()
-        elif self.tool == "bamstats":
+        elif self.tool == RNASEQQC:
+            return self.parse_rnaseqqc()
+        elif self.tool == BAMSTATS:
             return self.parse_bamstats()
         else:
-            sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
+            sys.exit(
+                f"{self.tool} is not supported. Please add a parser to Parser.py")
 
     def parse_samtools_stats(self) -> List[QMValue]:
         qm_values = []
@@ -35,14 +38,16 @@ class Parser:
                 if line.startswith('SN'):
                     line = line.rstrip().split('\t')
                     field, value = line[1].replace(':', ''), line[2]
-                    if field in metrics['samtools']:
-                        m = metrics['samtools'][field]
-                        m_type = m["type"]
+                    if field in metrics['samtools_stats']:
+                        m = metrics['samtools_stats'][field]
+                        value_cast = self.safe_cast(value, m["type"])
+                        if value_cast == None:
+                            continue
                         qmv = QMValue(
-                            m["key"], m_type(value), tooltip=m["tooltip"])
+                            m["key"], value_cast, tooltip=m["tooltip"])
                         qm_values.append(qmv)
         return qm_values
-    
+
     def parse_bamstats(self) -> List[QMValue]:
         qm_values = []
         # Parse file and save values
@@ -52,12 +57,18 @@ class Parser:
             if key in metrics['bamstats']:
                 m = metrics['bamstats'][key]
                 value = bamstats_res[key]
-                m_type = m["type"]
+                value_cast = self.safe_cast(value, m["type"])
+                if value_cast == None:
+                    continue
                 qmv = QMValue(
-                    m["key"], m_type(value), tooltip=m["tooltip"])
+                    m["key"], value_cast, tooltip=m["tooltip"])
                 qm_values.append(qmv)
         fi.close()
         return qm_values
+
+    def parse_rnaseqqc(self) -> List[QMValue]:
+        # TODO
+        return
 
     def parse_picard_CollectAlignmentSummaryMetrics(self) -> List[QMValue]:
         qm_values = []
@@ -72,9 +83,11 @@ class Parser:
         for i, field in enumerate(header):
             if field in metrics['picard_CollectAlignmentSummaryMetrics']:
                 m = metrics['picard_CollectAlignmentSummaryMetrics'][field]
-                m_type = m["type"]
+                value_cast = self.safe_cast(pair[i], m["type"])
+                if value_cast == None:
+                    continue
                 qmv = QMValue(
-                    m["key"], m_type(pair[i]), tooltip=m["tooltip"])
+                    m["key"], value_cast, tooltip=m["tooltip"])
                 qm_values.append(qmv)
         return qm_values
 
@@ -99,9 +112,11 @@ class Parser:
             for i, field in enumerate(header):
                 if field in metrics['picard_CollectInsertSizeMetrics']:
                     m = metrics['picard_CollectInsertSizeMetrics'][field]
-                    m_type = m["type"]
+                    value_cast = self.safe_cast(pair[i], m["type"])
+                    if value_cast == None:
+                        continue
                     qmv = QMValue(
-                        m["key"]+f' ({orientation}) [Picard]', m_type(pair[i]), tooltip=m["tooltip"])
+                        m["key"]+f' ({orientation}) [Picard]', value_cast, tooltip=m["tooltip"])
                     qm_values.append(qmv)
         return qm_values
 
@@ -123,8 +138,16 @@ class Parser:
         for i, field in enumerate(header):
             if field in metrics['picard_CollectWgsMetrics']:
                 m = metrics['picard_CollectWgsMetrics'][field]
-                m_type = m["type"]
+                value_cast = self.safe_cast(stats[i], m["type"])
+                if value_cast == None:
+                    continue
                 qmv = QMValue(
-                    m["key"], m_type(stats[i]), tooltip=m["tooltip"])
+                    m["key"], value_cast, tooltip=m["tooltip"])
                 qm_values.append(qmv)
         return qm_values
+
+    def safe_cast(self, value, to_type, default=None):
+        try:
+            return to_type(value)
+        except (ValueError, TypeError):
+            return default

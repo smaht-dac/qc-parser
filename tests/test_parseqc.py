@@ -10,7 +10,7 @@ def test_samtools():
     metrics_zip = f"tmp.samtool.metrics.{pv}.zip"
     cmd = (
         f"parse-qc -n 'BAM Quality Metrics' "
-        f"--metrics samtools {samtools_stats} "
+        f"--metrics samtools_stats {samtools_stats} "
         f"--output-zip {metrics_zip} "
         f"--output-json {qc_values}"
     )
@@ -62,7 +62,7 @@ def test_samtools_picard():
     cmd = (
         f"parse-qc -n 'samtools picard' "
         f"--metrics picard_CollectAlignmentSummaryMetrics {metrics} "
-        f"--metrics samtools {samtools_stats} "
+        f"--metrics samtools_stats {samtools_stats} "
         f"--output-zip {metrics_zip} "
         f"--output-json {qc_values}"
     )
