@@ -67,10 +67,20 @@ class Parser:
                 qm_values.append(qmv)
         fi.close()
         return qm_values
-    
+
     def parse_fastqc(self) -> List[QMValue]:
-        # TODO
-        return
+        qm_values = []
+        # Parse file and save values
+        with open(self.path) as fi:
+            for line in fi:
+                value, field, _ = line.rstrip().split('\t')
+                if field in metrics['fastqc_metrics']:
+                    m = metrics['fastqc_metrics'][field]
+                    value_cast = self.safe_cast(value, m["type"])
+                    qmv = QMValue(
+                        m["key"], value_cast, tooltip=m["tooltip"])
+                    qm_values.append(qmv)
+        return qm_values
 
     def parse_rnaseqqc(self) -> List[QMValue]:
         # TODO

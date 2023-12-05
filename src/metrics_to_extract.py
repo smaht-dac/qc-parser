@@ -415,7 +415,61 @@ rnaseqqc_metrics = {
 }
 
 fastqc_metrics = {
-    # ADD FASTQC METRICS
+    'Basic Statistics': {
+        'key': 'Basic Statistics',
+        'tooltip': '',
+        'type': str
+    },
+    'Per base sequence quality': {
+        'key': 'Per base sequence quality',
+        'tooltip': '',
+        'type': str
+    },
+    'Per tile sequence quality': {
+        'key': 'Per tile sequence quality',
+        'tooltip': '',
+        'type': str
+    },
+    'Per sequence quality scores': {
+        'key': 'Per sequence quality scores',
+        'tooltip': '',
+        'type': str
+    },
+    'Per base sequence content': {
+        'key': 'Per base sequence content',
+        'tooltip': '',
+        'type': str
+    },
+    'Per sequence GC content': {
+        'key': 'Per sequence GC content',
+        'tooltip': '',
+        'type': str
+    },
+    'Per base N content': {
+        'key': 'Per base N content',
+        'tooltip': '',
+        'type': str
+    },
+    'Sequence Length Distribution': {
+        'key': 'Sequence Length Distribution',
+        'tooltip': '',
+        'type': str
+    },
+    'Sequence Duplication Levels': {
+        'key': 'Sequence Duplication Levels',
+        'tooltip': '',
+        'type': str
+    },
+    'Overrepresented sequences': {
+        'key': 'Overrepresented sequences',
+        'tooltip': '',
+        'type': str
+    },
+    'Adapter Content': {
+        'key': 'Adapter Content',
+        'tooltip': '',
+        'type': str
+    }
 }
 
 

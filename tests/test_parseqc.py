@@ -3,6 +3,9 @@ import os, platform
 import json
 
 
+def test_fastqc():
+    # TODO
+
 def test_samtools():
     pv = platform.python_version()
     samtools_stats = "./tests/data/samtool_stats_res.txt"
@@ -15,7 +18,7 @@ def test_samtools():
         f"--output-json {qc_values}"
     )
     os.system(cmd)
-    
+
     assert os.path.exists(metrics_zip) == True
     assert os.path.exists(qc_values) == True
 
@@ -40,7 +43,7 @@ def test_picard_1():
         f"--output-json {qc_values}"
     )
     os.system(cmd)
-    
+
     assert os.path.exists(metrics_zip) == True
     assert os.path.exists(qc_values) == True
 
@@ -67,7 +70,7 @@ def test_samtools_picard():
         f"--output-json {qc_values}"
     )
     os.system(cmd)
-    
+
     assert os.path.exists(metrics_zip) == True
     assert os.path.exists(qc_values) == True
 
