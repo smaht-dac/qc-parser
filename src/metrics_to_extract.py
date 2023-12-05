@@ -5,6 +5,7 @@ RNASEQQC = 'rnaseqqc'
 PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS = 'picard_CollectAlignmentSummaryMetrics'
 PICARD_COLLECT_INSERT_SIZE_METRICS = 'picard_CollectInsertSizeMetrics'
 PICARD_COLLECT_WGS_METRICS = 'picard_CollectWgsMetrics'
+FASTQC = 'fastqc'
 
 
 ########################################################################
@@ -413,6 +414,10 @@ rnaseqqc_metrics = {
 
 }
 
+fastqc_metrics = {
+    # ADD FASTQC METRICS
+}
+
 
 metrics = {
     SAMTOOLS_STATS: samtools_stats_metrics,
@@ -420,5 +425,6 @@ metrics = {
     RNASEQQC: rnaseqqc_metrics,
     PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS: picard_CollectAlignmentSummaryMetrics_metrics,
     PICARD_COLLECT_INSERT_SIZE_METRICS: picard_CollectInsertSizeMetrics_metrics,
-    PICARD_COLLECT_WGS_METRICS: picard_CollectWgsMetrics_metrics
+    PICARD_COLLECT_WGS_METRICS: picard_CollectWgsMetrics_metrics,
+    FASTQC: fastqc_metrics
 }

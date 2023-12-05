@@ -51,7 +51,7 @@ class QMGeneric:
 
     def to_dict(self):
         return {
-            'name': self.name,
+            #'category': self.name, # This requires a change in the data model
             'qc_values': [QMValue_.to_dict() for QMValue_ in self.qm_values]
         }
 

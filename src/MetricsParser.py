@@ -1,5 +1,5 @@
 import sys
-from src.metrics_to_extract import metrics, SAMTOOLS_STATS, BAMSTATS, RNASEQQC, PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS, PICARD_COLLECT_INSERT_SIZE_METRICS, PICARD_COLLECT_WGS_METRICS
+from src.metrics_to_extract import metrics, SAMTOOLS_STATS, BAMSTATS, RNASEQQC, PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS, PICARD_COLLECT_INSERT_SIZE_METRICS, PICARD_COLLECT_WGS_METRICS, FASTQC
 from src.QMGeneric import QMValue
 from typing import List
 import json
@@ -26,6 +26,8 @@ class Parser:
             return self.parse_rnaseqqc()
         elif self.tool == BAMSTATS:
             return self.parse_bamstats()
+        elif self.tool == FASTQC:
+            return self.parse_fastqc()
         else:
             sys.exit(
                 f"{self.tool} is not supported. Please add a parser to Parser.py")
@@ -65,6 +67,10 @@ class Parser:
                 qm_values.append(qmv)
         fi.close()
         return qm_values
+    
+    def parse_fastqc(self) -> List[QMValue]:
+        # TODO
+        return
 
     def parse_rnaseqqc(self) -> List[QMValue]:
         # TODO
