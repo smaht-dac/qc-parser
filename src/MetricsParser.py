@@ -40,8 +40,8 @@ class Parser:
                 if line.startswith('SN'):
                     line = line.rstrip().split('\t')
                     field, value = line[1].replace(':', ''), line[2]
-                    if field in metrics['samtools_stats']:
-                        m = metrics['samtools_stats'][field]
+                    if field in metrics[SAMTOOLS_STATS]:
+                        m = metrics[SAMTOOLS_STATS][field]
                         value_cast = self.safe_cast(value, m["type"])
                         if value_cast == None:
                             continue
@@ -56,8 +56,8 @@ class Parser:
         fi = open(self.path)
         bamstats_res = json.load(fi)
         for key in bamstats_res.keys():
-            if key in metrics['bamstats']:
-                m = metrics['bamstats'][key]
+            if key in metrics[BAMSTATS]:
+                m = metrics[BAMSTATS][key]
                 value = bamstats_res[key]
                 value_cast = self.safe_cast(value, m["type"])
                 if value_cast == None:
@@ -74,8 +74,8 @@ class Parser:
         with open(self.path) as fi:
             for line in fi:
                 value, field, _ = line.rstrip().split('\t')
-                if field in metrics['fastqc_metrics']:
-                    m = metrics['fastqc_metrics'][field]
+                if field in metrics[FASTQC]:
+                    m = metrics[FASTQC][field]
                     value_cast = self.safe_cast(value, m["type"])
                     qmv = QMValue(
                         m["key"], value_cast, tooltip=m["tooltip"])
@@ -97,8 +97,8 @@ class Parser:
                     pair = line.rstrip().split('\t')
 
         for i, field in enumerate(header):
-            if field in metrics['picard_CollectAlignmentSummaryMetrics']:
-                m = metrics['picard_CollectAlignmentSummaryMetrics'][field]
+            if field in metrics[PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS]:
+                m = metrics[PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS][field]
                 value_cast = self.safe_cast(pair[i], m["type"])
                 if value_cast == None:
                     continue
@@ -126,8 +126,8 @@ class Parser:
         for pair in pairs:
             orientation = pair[8]
             for i, field in enumerate(header):
-                if field in metrics['picard_CollectInsertSizeMetrics']:
-                    m = metrics['picard_CollectInsertSizeMetrics'][field]
+                if field in metrics[PICARD_COLLECT_INSERT_SIZE_METRICS]:
+                    m = metrics[PICARD_COLLECT_INSERT_SIZE_METRICS][field]
                     value_cast = self.safe_cast(pair[i], m["type"])
                     if value_cast == None:
                         continue
@@ -152,8 +152,8 @@ class Parser:
                         stats = line.split('\t')
 
         for i, field in enumerate(header):
-            if field in metrics['picard_CollectWgsMetrics']:
-                m = metrics['picard_CollectWgsMetrics'][field]
+            if field in metrics[PICARD_COLLECT_WGS_METRICS]:
+                m = metrics[PICARD_COLLECT_WGS_METRICS][field]
                 value_cast = self.safe_cast(stats[i], m["type"])
                 if value_cast == None:
                     continue

@@ -4,7 +4,28 @@ import json
 
 
 def test_fastqc():
-    # TODO
+    pv = platform.python_version()
+    fastqc_stats = "./tests/data/fastqc_summary.txt"
+    qc_values = f"tmp.fastqc.qc_values.{pv}.json"
+    metrics_zip = f"tmp.fastqc.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'FastQC' "
+        f"--metrics fastqc {fastqc_stats} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert len(data["qc_values"]) == 11
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
 
 def test_samtools():
     pv = platform.python_version()
