@@ -49,12 +49,14 @@ from src.MetricsParser import Parser
     "--output-json",
     required=True,
     type=str,
+    default="qc_values.json",
     help="File name of the output JSON file",
 )
 @click.option(
     "--output-zip",
     required=True,
     type=str,
+    default="metrics.zip",
     help="File name of the output zip file",
 )
 def parse_qc(qm_name, metrics, additional_files, output_json, output_zip):

@@ -1,7 +1,17 @@
+# Tools
+SAMTOOLS_STATS = 'samtools_stats'
+BAMSTATS = 'bamstats'
+RNASEQQC = 'rnaseqqc'
+PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS = 'picard_CollectAlignmentSummaryMetrics'
+PICARD_COLLECT_INSERT_SIZE_METRICS = 'picard_CollectInsertSizeMetrics'
+PICARD_COLLECT_WGS_METRICS = 'picard_CollectWgsMetrics'
+FASTQC = 'fastqc'
+
+
 ########################################################################
 # Metrics to extract for each tool
 ########################################################################
-samtools = {
+samtools_stats_metrics = {
     'raw total sequences': {
         'key': 'Total Sequences [Samtools]',
         'tooltip': 'Total number of reads in a file, excluding supplementary and secondary reads',
@@ -84,7 +94,7 @@ samtools = {
     },
 }
 
-picard_CollectAlignmentSummaryMetrics = {
+picard_CollectAlignmentSummaryMetrics_metrics = {
     'PF_ALIGNED_BASES': {
         'key': 'Aligned Bases [Picard]',
         'tooltip': 'The total number of aligned bases',
@@ -122,7 +132,7 @@ picard_CollectAlignmentSummaryMetrics = {
     },
 }
 
-picard_CollectInsertSizeMetrics = {
+picard_CollectInsertSizeMetrics_metrics = {
     # [5]
     'MEAN_INSERT_SIZE': {
         'key': 'Mean Insert Size',
@@ -144,7 +154,7 @@ picard_CollectInsertSizeMetrics = {
     # 'PAIR_ORIENTATION' [8]
 }
 
-picard_CollectWgsMetrics = {
+picard_CollectWgsMetrics_metrics = {
     'GENOME_TERRITORY': {
         'key': 'Effective Genome Size [Picard]',
         'tooltip': 'The number of non-N bases in the genome',
@@ -162,7 +172,7 @@ picard_CollectWgsMetrics = {
     },
 }
 
-bamstats = {
+bamstats_metrics = {
     'Estimate_Average_Coverage': {
         'key': 'Average coverage (estimated)',
         'tooltip': 'Estimated average coverage',
@@ -170,11 +180,305 @@ bamstats = {
     }
 }
 
+rnaseqqc_metrics = {
+    "3' bias MAD_Std": {
+        'key': "3' bias MAD_Std",
+        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'type': float
+    },
+    "3' bias Std": {
+        'key': "3' bias Std",
+        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'type': float
+    },
+    "3' Bias, 25th Percentile": {
+        'key': "3' Bias, 25th Percentile",
+        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'type': float
+    },
+    "3' Bias, 75th Percentile": {
+        'key': "3' Bias, 75th Percentile",
+        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'type': float
+    },
+    "Genes used in 3' bias": {
+        'key': "Genes used in 3' bias",
+        'tooltip': "",
+        'type': int
+    },
+    "Mean 3' bias": {
+        'key': "Mean 3' bias",
+        'tooltip': "",
+        'type': float
+    },
+    "Median 3' bias": {
+        'key': "Median 3' bias",
+        'tooltip': "",
+        'type': float
+    },
+    'Alternative Alignments': {
+        'key': 'Alternative Alignments',
+        'tooltip': 'Duplicate read entries providing alternative coordinates',
+        'type': int
+    },
+    'Base Mismatch': {
+        'key': 'Base Mismatch',
+        'tooltip': 'The total number of mismatched bases (as determined by the "NM" tag) of all "Mapped Reads" (as defined above) divided by the total aligned length of all "Mapped Reads".',
+        'type': float
+    },
+    'Chimeric Reads': {
+        'key': 'Chimeric Reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Duplicate Rate of Mapped': {
+        'key': 'Duplicate Rate of Mapped',
+        'tooltip': 'This is the proportion of all reads which were marked as PCR/Optical Duplicates out of all "Mapped Reads" (as defined above; excludes Secondary and Vendor QC Failed reads). This is complementary to the "Unique Rate of Mapped".',
+        'type': int
+    },
+    'End 1 Antisense': {
+        'key': 'End 1 Antisense',
+        'tooltip': 'Number of reads that were sequenced in the antisense direction',
+        'type': int
+    },
+    'End 1 Mapping Rate': {
+        'key': 'End 1 Mapping Rate',
+        'tooltip': 'The proportion of Paired reads which were marked as First or Second in the pair, respectively, out of all "Mapped Reads" (above).',
+        'type': float
+    },
+    'End 1 Mismatch Rate': {
+        'key': 'End 1 Mismatch Rate',
+        'tooltip': 'The proportion of mismatched bases (as determined by the "NM" tag) belonging to First or Second mates, divided by the total aligned length of all "Mapped" (above) First or Second mates, respectively.',
+        'type': float
+    },
+    'End 1 Sense': {
+        'key': 'End 1 Sense',
+        'tooltip': 'Number of End 1 reads that were sequenced in the sense direction',
+        'type': int
+    },
+    'End 1 Sense Rate': {
+        'key': 'End 1 Sense Rate',
+        'tooltip': 'The proportion of First or Second Mate reads which intersected with a Sense Strand feature out of all First or Second Mate reads which intersected with any features, respectively.',
+        'type': float
+    },
+    'End 2 Antisense': {
+        'key': 'End 2 Antisense',
+        'tooltip': 'Number of reads that were sequenced in the antisense direction',
+        'type': int
+    },
+    'End 2 Mapping Rate': {
+        'key': 'End 2 Mapping Rate',
+        'tooltip': 'The proportion of Paired reads which were marked as First or Second in the pair, respectively, out of all "Mapped Reads" (above).',
+        'type': float
+    },
+    'End 2 Mismatch Rate': {
+        'key': 'End 2 Mismatch Rate',
+        'tooltip': 'The proportion of mismatched bases (as determined by the "NM" tag) belonging to First or Second mates, divided by the total aligned length of all "Mapped" (above) First or Second mates, respectively.',
+        'type': float
+    },
+    'End 2 Sense': {
+        'key': 'End 2 Sense',
+        'tooltip': 'Number of End 2 reads that were sequenced in the sense direction',
+        'type': int
+    },
+    'End 2 Sense Rate': {
+        'key': 'End 2 Sense Rate',
+        'tooltip': 'The proportion of First or Second Mate reads which intersected with a Sense Strand feature out of all First or Second Mate reads which intersected with any features, respectively.',
+        'type': float
+    },
+    'Estimated Library Complexity': {
+        'key': 'Estimated Library Complexity',
+        'tooltip': 'An estimation of the number of unique cDNA fragments present in the library. This computation follows the same formula as Picard EstimateLibraryComplexity',
+        'type': int
+    },
+    'Exonic Rate': {
+        'key': 'Exonic Rate',
+        'tooltip': 'The proportion of "Mapped Reads" (above) for which all aligned segments unambiguously aligned to exons of the same gene.',
+        'type': float
+    },
+    'Exonic/Intron ratio': {
+        'key': 'Exonic/Intron ratio',
+        'tooltip': 'Exonic Reads/Intronic Reads',
+        'type': float
+    },
+    'Expression Profiling Efficiency': {
+        'key': 'Expression Profiling Efficiency',
+        'tooltip': 'The proportion of "Exonic Reads" (see "Exonic Rate", below) out of all reads which were not Secondary Alignments or Platform/Vendor QC Failing reads.',
+        'type': float
+    },
+    'Exons with >0 reads': {
+        'key': 'Exons with >0 reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Exons with >=2 reads': {
+        'key': 'Exons with >=2 reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Exons with >=10 reads': {
+        'key': 'Exons with >=10 reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Failed Vendor QC': {
+        'key': 'Failed Vendor QC',
+        'tooltip': '',
+        'type': int
+    },
+    'Genes Detected': {
+        'key': 'Genes Detected',
+        'tooltip': 'The number of genes which had at least 5 unambiguous reads. The detection threshold can be changed with --detection-threshold',
+        'type': int
+    },
+    'Genes with >0 reads': {
+        'key': 'Genes with >0 reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Genes with >=2 reads': {
+        'key': 'Genes with >=2 reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Genes with >=10 reads': {
+        'key': 'Genes with >=10 reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Intergenic Rate': {
+        'key': 'Intergenic Rate',
+        'tooltip': 'The proportion of "Mapped Reads" (above) for which none of the aligned segments intersected any genes.',
+        'type': float
+    },
+    'Intragenic Rate': {
+        'key': 'Intragenic Rate',
+        'tooltip': 'The sum of "Exonic" and "Intronic" rates (see "Exonic Rate" and "Intronic Rate" above)',
+        'type': float
+    },
+    'Intronic Rate': {
+        'key': 'Intronic Rate',
+        'tooltip': 'The proportion of "Mapped Reads" (above) for which all aligned segments unambiguously aligned to the same gene, but none of which intersected any exons of the gene.',
+        'type': float
+    },
+    'Mapped Reads': {
+        'key': 'Mapped Reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Mapped Unique Reads': {
+        'key': 'Mapped Unique Reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Mapping Rate': {
+        'key': 'Mapping Rate',
+        'tooltip': 'The proportion of all reads in the Bam which were Mapped, and not Secondary Alignments or Platform/Vendor QC Failing reads ("Mapped Reads").',
+        'type': float
+    },
+    'Read Length': {
+        'key': 'Read Length',
+        'tooltip': 'The longest aligned length observed in any read',
+        'type': int
+    },
+    'rRNA Rate': {
+        'key': 'rRNA Rate',
+        'tooltip': 'The proportion of "Mapped Reads" (above) which at least partially intersected with an annotated rRNA gene. This is not complementary to any other rates.',
+        'type': float
+    },
+    'rRNA Reads': {
+        'key': 'rRNA Reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Total Mapped Pairs': {
+        'key': 'Total Mapped Pairs',
+        'tooltip': '',
+        'type': int
+    },
+    'Total Reads': {
+        'key': 'Total Reads',
+        'tooltip': '',
+        'type': int
+    },
+    'Unique Rate of Mapped': {
+        'key': 'Unique Rate of Mapped',
+        'tooltip': 'This is the proportion of reads which were not marked as PCR/Optical Duplicates out of all "Mapped Reads"',
+        'type': float
+    },
+    'Unpaired Reads': {
+        'key': 'Unpaired Reads',
+        'tooltip': '',
+        'type': int
+    },
+
+}
+
+fastqc_metrics = {
+    'Basic Statistics': {
+        'key': 'Basic Statistics',
+        'tooltip': '',
+        'type': str
+    },
+    'Per base sequence quality': {
+        'key': 'Per base sequence quality',
+        'tooltip': '',
+        'type': str
+    },
+    'Per tile sequence quality': {
+        'key': 'Per tile sequence quality',
+        'tooltip': '',
+        'type': str
+    },
+    'Per sequence quality scores': {
+        'key': 'Per sequence quality scores',
+        'tooltip': '',
+        'type': str
+    },
+    'Per base sequence content': {
+        'key': 'Per base sequence content',
+        'tooltip': '',
+        'type': str
+    },
+    'Per sequence GC content': {
+        'key': 'Per sequence GC content',
+        'tooltip': '',
+        'type': str
+    },
+    'Per base N content': {
+        'key': 'Per base N content',
+        'tooltip': '',
+        'type': str
+    },
+    'Sequence Length Distribution': {
+        'key': 'Sequence Length Distribution',
+        'tooltip': '',
+        'type': str
+    },
+    'Sequence Duplication Levels': {
+        'key': 'Sequence Duplication Levels',
+        'tooltip': '',
+        'type': str
+    },
+    'Overrepresented sequences': {
+        'key': 'Overrepresented sequences',
+        'tooltip': '',
+        'type': str
+    },
+    'Adapter Content': {
+        'key': 'Adapter Content',
+        'tooltip': '',
+        'type': str
+    }
+}
+
 
 metrics = {
-    'samtools': samtools,
-    'bamstats': bamstats,
-    'picard_CollectAlignmentSummaryMetrics': picard_CollectAlignmentSummaryMetrics,
-    'picard_CollectInsertSizeMetrics': picard_CollectInsertSizeMetrics,
-    'picard_CollectWgsMetrics': picard_CollectWgsMetrics
+    SAMTOOLS_STATS: samtools_stats_metrics,
+    BAMSTATS: bamstats_metrics,
+    RNASEQQC: rnaseqqc_metrics,
+    PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS: picard_CollectAlignmentSummaryMetrics_metrics,
+    PICARD_COLLECT_INSERT_SIZE_METRICS: picard_CollectInsertSizeMetrics_metrics,
+    PICARD_COLLECT_WGS_METRICS: picard_CollectWgsMetrics_metrics,
+    FASTQC: fastqc_metrics
 }

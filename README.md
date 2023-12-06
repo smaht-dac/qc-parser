@@ -32,11 +32,12 @@ additional_output_2.tsv
 ```
 
 The currently supported QC tools are:
-- Samtools (samtools stats)
+- samtools_stats
 - picard_CollectAlignmentSummaryMetrics
 - picard_CollectInsertSizeMetrics
 - picard_CollectWgsMetrics
-- bamstats.py
+- bamStats.py
+- rnaseqqc (RNA-SeQC)
 
 ## Development
 
