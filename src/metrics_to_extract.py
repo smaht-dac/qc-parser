@@ -228,7 +228,7 @@ rnaseqqc_metrics = {
     },
     'Chimeric Reads': {
         'key': 'Chimeric Reads',
-        'tooltip': '',
+        'tooltip': 'Chimeric Reads',
         'type': int
     },
     'Duplicate Rate of Mapped': {
@@ -308,22 +308,22 @@ rnaseqqc_metrics = {
     },
     'Exons with >0 reads': {
         'key': 'Exons with >0 reads',
-        'tooltip': '',
+        'tooltip': 'Exons with >0 reads',
         'type': int
     },
     'Exons with >=2 reads': {
         'key': 'Exons with >=2 reads',
-        'tooltip': '',
+        'tooltip': 'Exons with >=2 reads',
         'type': int
     },
     'Exons with >=10 reads': {
         'key': 'Exons with >=10 reads',
-        'tooltip': '',
+        'tooltip': 'Exons with >=10 reads',
         'type': int
     },
     'Failed Vendor QC': {
         'key': 'Failed Vendor QC',
-        'tooltip': '',
+        'tooltip': 'Failed Vendor QC',
         'type': int
     },
     'Genes Detected': {
@@ -333,17 +333,17 @@ rnaseqqc_metrics = {
     },
     'Genes with >0 reads': {
         'key': 'Genes with >0 reads',
-        'tooltip': '',
+        'tooltip': 'Genes with >0 reads',
         'type': int
     },
     'Genes with >=2 reads': {
         'key': 'Genes with >=2 reads',
-        'tooltip': '',
+        'tooltip': 'Genes with >=2 reads',
         'type': int
     },
     'Genes with >=10 reads': {
         'key': 'Genes with >=10 reads',
-        'tooltip': '',
+        'tooltip': 'Genes with >=10 reads',
         'type': int
     },
     'Intergenic Rate': {
@@ -363,12 +363,12 @@ rnaseqqc_metrics = {
     },
     'Mapped Reads': {
         'key': 'Mapped Reads',
-        'tooltip': '',
+        'tooltip': 'Mapped Reads',
         'type': int
     },
     'Mapped Unique Reads': {
         'key': 'Mapped Unique Reads',
-        'tooltip': '',
+        'tooltip': 'Mapped Unique Reads',
         'type': int
     },
     'Mapping Rate': {
@@ -388,17 +388,17 @@ rnaseqqc_metrics = {
     },
     'rRNA Reads': {
         'key': 'rRNA Reads',
-        'tooltip': '',
+        'tooltip': 'rRNA Reads',
         'type': int
     },
     'Total Mapped Pairs': {
         'key': 'Total Mapped Pairs',
-        'tooltip': '',
+        'tooltip': 'Total Mapped Pairs',
         'type': int
     },
     'Total Reads': {
         'key': 'Total Reads',
-        'tooltip': '',
+        'tooltip': 'Total Reads',
         'type': int
     },
     'Unique Rate of Mapped': {
@@ -408,7 +408,7 @@ rnaseqqc_metrics = {
     },
     'Unpaired Reads': {
         'key': 'Unpaired Reads',
-        'tooltip': '',
+        'tooltip': 'Unpaired Reads',
         'type': int
     },
 
@@ -417,57 +417,57 @@ rnaseqqc_metrics = {
 fastqc_metrics = {
     'Basic Statistics': {
         'key': 'Basic Statistics',
-        'tooltip': '',
+        'tooltip': 'Basic Statistics',
         'type': str
     },
     'Per base sequence quality': {
         'key': 'Per base sequence quality',
-        'tooltip': '',
+        'tooltip': 'Per base sequence quality',
         'type': str
     },
     'Per tile sequence quality': {
         'key': 'Per tile sequence quality',
-        'tooltip': '',
+        'tooltip': 'Per tile sequence quality',
         'type': str
     },
     'Per sequence quality scores': {
         'key': 'Per sequence quality scores',
-        'tooltip': '',
+        'tooltip': 'Per sequence quality scores',
         'type': str
     },
     'Per base sequence content': {
         'key': 'Per base sequence content',
-        'tooltip': '',
+        'tooltip': 'Per base sequence content',
         'type': str
     },
     'Per sequence GC content': {
         'key': 'Per sequence GC content',
-        'tooltip': '',
+        'tooltip': 'Per sequence GC content',
         'type': str
     },
     'Per base N content': {
         'key': 'Per base N content',
-        'tooltip': '',
+        'tooltip': 'Per base N content',
         'type': str
     },
     'Sequence Length Distribution': {
         'key': 'Sequence Length Distribution',
-        'tooltip': '',
+        'tooltip': 'Sequence Length Distribution',
         'type': str
     },
     'Sequence Duplication Levels': {
         'key': 'Sequence Duplication Levels',
-        'tooltip': '',
+        'tooltip': 'Sequence Duplication Levels',
         'type': str
     },
     'Overrepresented sequences': {
         'key': 'Overrepresented sequences',
-        'tooltip': '',
+        'tooltip': 'Overrepresented sequences',
         'type': str
     },
     'Adapter Content': {
         'key': 'Adapter Content',
-        'tooltip': '',
+        'tooltip': 'Adapter Content',
         'type': str
     }
 }
