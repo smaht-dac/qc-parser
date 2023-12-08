@@ -469,6 +469,16 @@ fastqc_metrics = {
         'key': 'Adapter Content',
         'tooltip': 'Adapter Content',
         'type': str
+    },
+    'Total Sequences': {
+        'key': 'Total Sequences',
+        'tooltip': 'Total Sequences',
+        'type': int
+    },
+    'Sequence Length': {
+        'key': 'Sequence Length',
+        'tooltip': 'Sequence Length',
+        'type': int
     }
 }
 
