@@ -18,6 +18,24 @@ samtools_stats_metrics = {
         'derived_from': 'samtools_stats:raw_total_sequences',
         'type': int
     },
+    'average length': {
+        'key': 'Average Length [Samtools]',
+        'tooltip': 'Ratio between total length and sequences',
+        'derived_from': 'samtools_stats:average_length',
+        'type': float
+    },
+    'maximum length': {
+        'key': 'Maximum Length [Samtools]',
+        'tooltip': 'Length of the longest read (includes hard-clipped bases).',
+        'derived_from': 'samtools_stats:maximum_length',
+        'type': int
+    },
+    'bases mapped': {
+        'key': 'Bases Mapped [Samtools]',
+        'tooltip': 'Number of processed bases that belong to reads mapped',
+        'derived_from': 'samtools_stats:bases_mapped',
+        'type': int
+    },
     'sequences': {
         'key': 'Processed Sequences [Samtools]',
         'tooltip': 'Number of processed reads',
