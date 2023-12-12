@@ -46,7 +46,7 @@ class Parser:
                         if value_cast == None:
                             continue
                         qmv = QMValue(
-                            m["key"], value_cast, tooltip=m["tooltip"])
+                            m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
                         qm_values.append(qmv)
         return qm_values
 
@@ -63,7 +63,7 @@ class Parser:
                 if value_cast == None:
                     continue
                 qmv = QMValue(
-                    m["key"], value_cast, tooltip=m["tooltip"])
+                    m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
                 qm_values.append(qmv)
         fi.close()
         return qm_values
@@ -78,7 +78,7 @@ class Parser:
                     m = metrics[FASTQC][field]
                     value_cast = self.safe_cast(value, m["type"])
                     qmv = QMValue(
-                        m["key"], value_cast, tooltip=m["tooltip"])
+                        m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
                     qm_values.append(qmv)
         return qm_values
 
@@ -103,7 +103,7 @@ class Parser:
                 if value_cast == None:
                     continue
                 qmv = QMValue(
-                    m["key"], value_cast, tooltip=m["tooltip"])
+                    m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
                 qm_values.append(qmv)
         return qm_values
 
@@ -132,7 +132,7 @@ class Parser:
                     if value_cast == None:
                         continue
                     qmv = QMValue(
-                        m["key"]+f' ({orientation}) [Picard]', value_cast, tooltip=m["tooltip"])
+                        m["key"]+f' ({orientation}) [Picard]', value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
                     qm_values.append(qmv)
         return qm_values
 
@@ -158,7 +158,7 @@ class Parser:
                 if value_cast == None:
                     continue
                 qmv = QMValue(
-                    m["key"], value_cast, tooltip=m["tooltip"])
+                    m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
                 qm_values.append(qmv)
         return qm_values
 
