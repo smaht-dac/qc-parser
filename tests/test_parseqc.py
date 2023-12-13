@@ -48,7 +48,7 @@ def test_samtools():
     qc_file.close()
 
     #assert data["name"] == "BAM Quality Metrics"
-    assert len(data["qc_values"]) == 15
+    assert len(data["qc_values"]) == 18
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
@@ -100,6 +100,6 @@ def test_samtools_picard():
     qc_file.close()
 
     #assert data["name"] == "samtools picard"
-    assert len(data["qc_values"]) == 22
+    assert len(data["qc_values"]) == 25
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
