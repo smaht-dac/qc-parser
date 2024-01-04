@@ -228,15 +228,15 @@ bamstats_metrics = {
     },
     'Number_of_Uniquely_Aligned_Reads_with_Q_>=_10': {
         'key': 'Uniquely Aligned Reads with Q>=10 [bamstats]',
-        'tooltip': None,
+        'tooltip': 'Uniquely Aligned Reads with Q>=10',
         'derived_from': 'bamstats:number_of_uniquely_aligned_reads_with_q_>=_10',
-        'type': float
+        'type': int
     },
     'Number_of_Uniquely_Aligned_Reads_without_Dups_and_Q_>=_10': {
         'key': 'Uniquely Aligned Reads without Duplicates with Q>=10 [bamstats]',
-        'tooltip': None,
+        'tooltip': 'Uniquely Aligned Reads without Duplicates with Q>=10',
         'derived_from': 'bamstats:number_of_uniquely_aligned_reads_without_dups_and_q_>=_10',
-        'type': float
+        'type': int
     }
 }
 

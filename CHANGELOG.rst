@@ -1,3 +1,8 @@
+0.0.7
+=====
+
+* Minor changes to bamstats parser
+
 0.0.3
 =====
 
