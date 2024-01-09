@@ -122,7 +122,7 @@ samtools_stats_metrics = {
     },
     'percentage of properly paired reads (%)': {
         'key': 'Percentage of Properly Paired Reads [Samtools]',
-        'tooltip': None,
+        'tooltip': 'Percentage of properly paired reads',
         'derived_from': 'samtools_stats:percentage_of_properly_paired_reads',
         'type': float
     },
@@ -221,20 +221,20 @@ picard_CollectWgsMetrics_metrics = {
 
 bamstats_metrics = {
     'Estimate_Average_Coverage': {
-        'key': 'Average coverage (estimated)',
+        'key': 'Estimated Average Coverage [bamstats]',
         'tooltip': 'Estimated average coverage',
         'derived_from': 'bamstats:estimate_average_coverage',
         'type': float
     },
     'Number_of_Uniquely_Aligned_Reads_with_Q_>=_10': {
         'key': 'Uniquely Aligned Reads with Q>=10 [bamstats]',
-        'tooltip': 'Uniquely Aligned Reads with Q>=10',
+        'tooltip': 'Uniquely aligned reads with Q>=10',
         'derived_from': 'bamstats:number_of_uniquely_aligned_reads_with_q_>=_10',
         'type': int
     },
     'Number_of_Uniquely_Aligned_Reads_without_Dups_and_Q_>=_10': {
         'key': 'Uniquely Aligned Reads without Duplicates with Q>=10 [bamstats]',
-        'tooltip': 'Uniquely Aligned Reads without Duplicates with Q>=10',
+        'tooltip': 'Uniquely aligned reads without duplicates with Q>=10',
         'derived_from': 'bamstats:number_of_uniquely_aligned_reads_without_dups_and_q_>=_10',
         'type': int
     }
@@ -242,128 +242,128 @@ bamstats_metrics = {
 
 rnaseqqc_metrics = {
     "3' bias MAD_Std": {
-        'key': "3' bias MAD_Std",
-        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'key': "3' Bias, MAD_Std",
+        'tooltip': "3' Bias statistics (Median Absolute Deviation): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
         'derived_from': 'rnaseqqc:3p_bias_mad_std',
         'type': float
     },
     "3' bias Std": {
-        'key': "3' bias Std",
-        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'key': "3' Bias, Std",
+        'tooltip': "3' Bias statistics (Std Deviation): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
         'derived_from': 'rnaseqqc:3p_bias_std',
         'type': float
     },
     "3' Bias, 25th Percentile": {
         'key': "3' Bias, 25th Percentile",
-        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'tooltip': "3' Bias statistics (25th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
         'derived_from': 'rnaseqqc:3p_bias_25th_percentile',
         'type': float
     },
     "3' Bias, 75th Percentile": {
         'key': "3' Bias, 75th Percentile",
-        'tooltip': "3' Bias statistics (Mean, Median, Std Deviation, Median Absolute Deviation, 25th percentile, 75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
+        'tooltip': "3' Bias statistics (75th percentile): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
         'derived_from': 'rnaseqqc:3p_bias_75th_percentile',
         'type': float
     },
     "Genes used in 3' bias": {
-        'key': "Genes used in 3' bias",
-        'tooltip': "",
+        'key': "Genes used in 3' Bias",
+        'tooltip': "The number of genes used in calculating 3' Bias statistics",
         'derived_from': 'rnaseqqc:genes_used_in_3p_bias',
         'type': int
     },
     "Mean 3' bias": {
-        'key': "Mean 3' bias",
-        'tooltip': "",
+        'key': "Mean 3' Bias",
+        'tooltip': "3' Bias statistics (Mean): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
         'derived_from': 'rnaseqqc:mean_3p_bias',
         'type': float
     },
     "Median 3' bias": {
-        'key': "Median 3' bias",
-        'tooltip': "",
+        'key': "Median 3' Bias",
+        'tooltip': "3' Bias statistics (Median): These aggregate statistics are based on the total coverage in 100 bp windows on both the 3' and 5' ends of a gene. The windows are both offset 150 bases into the gene. This computation is only performed on genes at least 600bp long and with at least 5 unambiguous reads. A gene with even coverage in both it's 3' and 5' windows would have a bias of 0.5; bias near 1 or 0 may indicate degredation",
         'derived_from': 'rnaseqqc:median_3p_bias',
         'type': float
     },
     'Alternative Alignments': {
         'key': 'Alternative Alignments',
-        'tooltip': 'Duplicate read entries providing alternative coordinates',
+        'tooltip': 'The number of duplicate read entries providing alternative coordinates',
         'derived_from': 'rnaseqqc:alternative_alignments',
         'type': int
     },
     'Base Mismatch': {
         'key': 'Base Mismatch',
-        'tooltip': 'The total number of mismatched bases (as determined by the "NM" tag) of all "Mapped Reads" (as defined above) divided by the total aligned length of all "Mapped Reads".',
+        'tooltip': 'The total number of mismatched bases (as determined by the "NM" tag) of all mapped reads divided by the total aligned length of all mapped reads',
         'derived_from': 'rnaseqqc:base_mismatch',
         'type': float
     },
     'Chimeric Reads': {
         'key': 'Chimeric Reads',
-        'tooltip': 'Chimeric Reads',
+        'tooltip': 'The number of chimeric reads',
         'derived_from': 'rnaseqqc:chimeric_reads',
         'type': int
     },
     'Duplicate Rate of Mapped': {
         'key': 'Duplicate Rate of Mapped',
-        'tooltip': 'This is the proportion of all reads which were marked as PCR/Optical Duplicates out of all "Mapped Reads" (as defined above; excludes Secondary and Vendor QC Failed reads). This is complementary to the "Unique Rate of Mapped".',
+        'tooltip': 'This is the proportion of all reads which were marked as PCR/optical duplicates out of all mapped reads; excludes secondary and vendor QC failed reads',
         'derived_from': 'rnaseqqc:duplicate_rate_of_mapped',
         'type': int
     },
     'End 1 Antisense': {
         'key': 'End 1 Antisense',
-        'tooltip': 'Number of reads that were sequenced in the antisense direction',
+        'tooltip': 'The number of reads that were sequenced in the antisense direction',
         'derived_from': 'rnaseqqc:end_1_antisense',
         'type': int
     },
     'End 1 Mapping Rate': {
         'key': 'End 1 Mapping Rate',
-        'tooltip': 'The proportion of Paired reads which were marked as First or Second in the pair, respectively, out of all "Mapped Reads" (above).',
+        'tooltip': 'The proportion of paired reads which were marked as First or Second in the pair, respectively, out of all mapped reads',
         'derived_from': 'rnaseqqc:end_1_mapping_rate',
         'type': float
     },
     'End 1 Mismatch Rate': {
         'key': 'End 1 Mismatch Rate',
-        'tooltip': 'The proportion of mismatched bases (as determined by the "NM" tag) belonging to First or Second mates, divided by the total aligned length of all "Mapped" (above) First or Second mates, respectively.',
+        'tooltip': 'The proportion of mismatched bases (as determined by the "NM" tag) belonging to First or Second mates, divided by the total aligned length of all mapped First or Second mates, respectively',
         'derived_from': 'rnaseqqc:end_1_mismatch_rate',
         'type': float
     },
     'End 1 Sense': {
         'key': 'End 1 Sense',
-        'tooltip': 'Number of End 1 reads that were sequenced in the sense direction',
+        'tooltip': 'The number of End 1 reads that were sequenced in the sense direction',
         'derived_from': 'rnaseqqc:end_1_sense',
         'type': int
     },
     'End 1 Sense Rate': {
         'key': 'End 1 Sense Rate',
-        'tooltip': 'The proportion of First or Second Mate reads which intersected with a Sense Strand feature out of all First or Second Mate reads which intersected with any features, respectively.',
+        'tooltip': 'The proportion of First or Second mate reads which intersected with a Sense Strand feature out of all First or Second mate reads which intersected with any features, respectively',
         'derived_from': 'rnaseqqc:end_1_sense_rate',
         'type': float
     },
     'End 2 Antisense': {
         'key': 'End 2 Antisense',
-        'tooltip': 'Number of reads that were sequenced in the antisense direction',
+        'tooltip': 'The number of reads that were sequenced in the antisense direction',
         'derived_from': 'rnaseqqc:end_2_antisense',
         'type': int
     },
     'End 2 Mapping Rate': {
         'key': 'End 2 Mapping Rate',
-        'tooltip': 'The proportion of Paired reads which were marked as First or Second in the pair, respectively, out of all "Mapped Reads" (above).',
+        'tooltip': 'The proportion of paired reads which were marked as First or Second in the pair, respectively, out of all mapped reads',
         'derived_from': 'rnaseqqc:end_2_mapping_rate',
         'type': float
     },
     'End 2 Mismatch Rate': {
         'key': 'End 2 Mismatch Rate',
-        'tooltip': 'The proportion of mismatched bases (as determined by the "NM" tag) belonging to First or Second mates, divided by the total aligned length of all "Mapped" (above) First or Second mates, respectively.',
+        'tooltip': 'The proportion of mismatched bases (as determined by the "NM" tag) belonging to First or Second mates, divided by the total aligned length of all mapped First or Second mates, respectively',
         'derived_from': 'rnaseqqc:end_2_mismatch_rate',
         'type': float
     },
     'End 2 Sense': {
         'key': 'End 2 Sense',
-        'tooltip': 'Number of End 2 reads that were sequenced in the sense direction',
+        'tooltip': 'The number of End 2 reads that were sequenced in the sense direction',
         'derived_from': 'rnaseqqc:end_2_sense',
         'type': int
     },
     'End 2 Sense Rate': {
         'key': 'End 2 Sense Rate',
-        'tooltip': 'The proportion of First or Second Mate reads which intersected with a Sense Strand feature out of all First or Second Mate reads which intersected with any features, respectively.',
+        'tooltip': 'The proportion of First or Second mate reads which intersected with a Sense Strand feature out of all First or Second mate reads which intersected with any features, respectively',
         'derived_from': 'rnaseqqc:end_2_sense_rate',
         'type': float
     },
@@ -375,103 +375,103 @@ rnaseqqc_metrics = {
     },
     'Exonic Rate': {
         'key': 'Exonic Rate',
-        'tooltip': 'The proportion of "Mapped Reads" (above) for which all aligned segments unambiguously aligned to exons of the same gene.',
+        'tooltip': 'The proportion of mapped reads for which all aligned segments unambiguously aligned to exons of the same gene',
         'derived_from': 'rnaseqqc:exonic_rate',
         'type': float
     },
     'Exonic/Intron ratio': {
-        'key': 'Exonic/Intron ratio',
-        'tooltip': 'Exonic Reads/Intronic Reads',
+        'key': 'Exonic/Intron Ratio',
+        'tooltip': 'The proportion of exonic and intronic reads',
         'derived_from': 'rnaseqqc:exonic_intron_ratio',
         'type': float
     },
     'Expression Profiling Efficiency': {
         'key': 'Expression Profiling Efficiency',
-        'tooltip': 'The proportion of "Exonic Reads" (see "Exonic Rate", below) out of all reads which were not Secondary Alignments or Platform/Vendor QC Failing reads.',
+        'tooltip': 'The proportion of exonic reads (see "Exonic Rate") out of all reads which were not secondary alignments or platform/vendor QC failing reads',
         'derived_from': 'rnaseqqc:expression_profiling_efficiency',
         'type': float
     },
     'Exons with >0 reads': {
-        'key': 'Exons with >0 reads',
-        'tooltip': 'Exons with >0 reads',
+        'key': 'Exons with >0 Reads',
+        'tooltip': 'The number of exons with >0 reads',
         'derived_from': 'rnaseqqc:Exons_with_>0_reads',
         'type': int
     },
     'Exons with >=2 reads': {
-        'key': 'Exons with >=2 reads',
-        'tooltip': 'Exons with >=2 reads',
+        'key': 'Exons with >=2 Reads',
+        'tooltip': 'The number of exons with >=2 reads',
         'derived_from': 'rnaseqqc:Exons_with_>2_reads',
         'type': int
     },
     'Exons with >=10 reads': {
-        'key': 'Exons with >=10 reads',
-        'tooltip': 'Exons with >=10 reads',
+        'key': 'Exons with >=10 Reads',
+        'tooltip': 'The number of exons with >=10 reads',
         'derived_from': 'rnaseqqc:Exons_with_>10_reads',
         'type': int
     },
     'Failed Vendor QC': {
         'key': 'Failed Vendor QC',
-        'tooltip': 'Failed Vendor QC',
+        'tooltip': 'The number of reads that failed vendor QC',
         'derived_from': 'rnaseqqc:failed_vendor_qc',
         'type': int
     },
     'Genes Detected': {
         'key': 'Genes Detected',
-        'tooltip': 'The number of genes which had at least 5 unambiguous reads. The detection threshold can be changed with --detection-threshold',
+        'tooltip': 'The number of genes which had at least 5 unambiguous reads',
         'derived_from': 'rnaseqqc:genes_detected',
         'type': int
     },
     'Genes with >0 reads': {
-        'key': 'Genes with >0 reads',
-        'tooltip': 'Genes with >0 reads',
+        'key': 'Genes with >0 Reads',
+        'tooltip': 'The number of genes with >0 reads',
         'derived_from': 'rnaseqqc:genes_with_>0_reads',
         'type': int
     },
     'Genes with >=2 reads': {
-        'key': 'Genes with >=2 reads',
-        'tooltip': 'Genes with >=2 reads',
+        'key': 'Genes with >=2 Reads',
+        'tooltip': 'The number of genes with >=2 reads',
         'derived_from': 'rnaseqqc:genes_with_>2_reads',
         'type': int
     },
     'Genes with >=10 reads': {
-        'key': 'Genes with >=10 reads',
-        'tooltip': 'Genes with >=10 reads',
+        'key': 'Genes with >=10 Reads',
+        'tooltip': 'The number of genes with >=10 reads',
         'derived_from': 'rnaseqqc:genes_with_>10_reads',
         'type': int
     },
     'Intergenic Rate': {
         'key': 'Intergenic Rate',
-        'tooltip': 'The proportion of "Mapped Reads" (above) for which none of the aligned segments intersected any genes.',
+        'tooltip': 'The proportion of mapped reads for which none of the aligned segments intersected any genes',
         'derived_from': 'rnaseqqc:intergenic_rate',
         'type': float
     },
     'Intragenic Rate': {
         'key': 'Intragenic Rate',
-        'tooltip': 'The sum of "Exonic" and "Intronic" rates (see "Exonic Rate" and "Intronic Rate" above)',
+        'tooltip': 'The sum of exonic and intronic rates (see "Exonic Rate" and "Intronic Rate")',
         'derived_from': 'rnaseqqc:intragenic_rate',
         'type': float
     },
     'Intronic Rate': {
         'key': 'Intronic Rate',
-        'tooltip': 'The proportion of "Mapped Reads" (above) for which all aligned segments unambiguously aligned to the same gene, but none of which intersected any exons of the gene.',
+        'tooltip': 'The proportion of mapped reads for which all aligned segments unambiguously aligned to the same gene, but none of which intersected any exons of the gene',
         'derived_from': 'rnaseqqc:intronic_rate',
         'type': float
     },
     'Mapped Reads': {
         'key': 'Mapped Reads',
-        'tooltip': 'Mapped Reads',
+        'tooltip': 'The number of mapped reads',
         'derived_from': 'rnaseqqc:mapped_reads',
         'type': int
     },
     'Mapped Unique Reads': {
         'key': 'Mapped Unique Reads',
-        'tooltip': 'Mapped Unique Reads',
+        'tooltip': 'The number of uniquely mapped reads',
         'derived_from': 'rnaseqqc:mapped_unique_reads',
         'type': int
     },
     'Mapping Rate': {
         'key': 'Mapping Rate',
-        'tooltip': 'The proportion of all reads in the Bam which were Mapped, and not Secondary Alignments or Platform/Vendor QC Failing reads ("Mapped Reads").',
+        'tooltip': 'The proportion of all reads in the BAM which were mapped, and not secondary alignments or platform/vendor QC failing reads',
         'derived_from': 'rnaseqqc:mapping_rate',
         'type': float
     },
@@ -483,37 +483,37 @@ rnaseqqc_metrics = {
     },
     'rRNA Rate': {
         'key': 'rRNA Rate',
-        'tooltip': 'The proportion of "Mapped Reads" (above) which at least partially intersected with an annotated rRNA gene. This is not complementary to any other rates.',
+        'tooltip': 'The proportion of mapped reads which at least partially intersected with an annotated rRNA gene',
         'derived_from': 'rnaseqqc:rrna_rate',
         'type': float
     },
     'rRNA Reads': {
         'key': 'rRNA Reads',
-        'tooltip': 'rRNA Reads',
+        'tooltip': 'The number of rRNA reads',
         'derived_from': 'rnaseqqc:rrna_reads',
         'type': int
     },
     'Total Mapped Pairs': {
         'key': 'Total Mapped Pairs',
-        'tooltip': 'Total Mapped Pairs',
+        'tooltip': 'The number of total mapped pairs',
         'derived_from': 'rnaseqqc:total_mapped_pairs',
         'type': int
     },
     'Total Reads': {
         'key': 'Total Reads',
-        'tooltip': 'Total Reads',
+        'tooltip': 'The number of total reads',
         'derived_from': 'rnaseqqc:total_reads',
         'type': int
     },
     'Unique Rate of Mapped': {
         'key': 'Unique Rate of Mapped',
-        'tooltip': 'This is the proportion of reads which were not marked as PCR/Optical Duplicates out of all "Mapped Reads"',
+        'tooltip': 'This is the proportion of reads which were not marked as PCR/optical duplicates out of all mapped reads',
         'derived_from': 'rnaseqqc:unique_rate_of_mapped',
         'type': float
     },
     'Unpaired Reads': {
         'key': 'Unpaired Reads',
-        'tooltip': 'Unpaired Reads',
+        'tooltip': 'The number of unpaired reads',
         'derived_from': 'rnaseqqc:unpaired_reads',
         'type': int
     },
@@ -523,79 +523,79 @@ rnaseqqc_metrics = {
 fastqc_metrics = {
     'Basic Statistics': {
         'key': 'Basic Statistics',
-        'tooltip': 'Basic Statistics',
+        'tooltip': 'Basic statistics for the file analysed',
         'derived_from': 'fastqc:basic_statistics',
         'type': str
     },
     'Per base sequence quality': {
-        'key': 'Per base sequence quality',
-        'tooltip': 'Per base sequence quality',
+        'key': 'Per Base Sequence Quality',
+        'tooltip': 'The mean quality value (Phred Score) across each base position in the read',
         'derived_from': 'fastqc:per_base_sequence_quality',
         'type': str
     },
     'Per tile sequence quality': {
-        'key': 'Per tile sequence quality',
-        'tooltip': 'Per tile sequence quality',
+        'key': 'Per Tile Sequence Quality',
+        'tooltip': 'The quality scores from each tile across all of bases',
         'derived_from': 'fastqc:per_tile_sequence_quality',
         'type': str
     },
     'Per sequence quality scores': {
-        'key': 'Per sequence quality scores',
-        'tooltip': 'Per sequence quality scores',
+        'key': 'Per Sequence Quality Scores',
+        'tooltip': 'The number of reads with average quality scores',
         'derived_from': 'fastqc:per_sequence_quality_scores',
         'type': str
     },
     'Per base sequence content': {
-        'key': 'Per base sequence content',
-        'tooltip': 'Per base sequence content',
+        'key': 'Per Base Sequence Content',
+        'tooltip': 'The proportion of each base position for which each of the four normal DNA bases has been called',
         'derived_from': 'fastqc:per_base_sequence_content',
         'type': str
     },
     'Per sequence GC content': {
-        'key': 'Per sequence GC content',
-        'tooltip': 'Per sequence GC content',
+        'key': 'Per Sequence GC Content',
+        'tooltip': 'The average GC content of reads',
         'derived_from': 'fastqc:per_sequence_gc_content',
         'type': str
     },
     'Per base N content': {
-        'key': 'Per base N content',
-        'tooltip': 'Per base N content',
+        'key': 'Per Base N Content',
+        'tooltip': 'The percentage of base calls at each position for which an N was called',
         'derived_from': 'fastqc:per_base_n_content',
         'type': str
     },
     'Sequence Length Distribution': {
         'key': 'Sequence Length Distribution',
-        'tooltip': 'Sequence Length Distribution',
+        'tooltip': 'The distribution of sequence length over all sequences',
         'derived_from': 'fastqc:sequence_length_distribution',
         'type': str
     },
     'Sequence Duplication Levels': {
         'key': 'Sequence Duplication Levels',
-        'tooltip': 'Sequence Duplication Levels',
+        'tooltip': 'The relative level of duplication found for every sequence',
         'derived_from': 'fastqc:sequence_duplication_levels',
         'type': str
     },
     'Overrepresented sequences': {
-        'key': 'Overrepresented sequences',
-        'tooltip': 'Overrepresented sequences',
+        'key': 'Overrepresented Sequences',
+        'tooltip': 'The total amount of overrepresented sequences',
         'derived_from': 'fastqc:overrepresented_sequences',
         'type': str
     },
     'Adapter Content': {
         'key': 'Adapter Content',
-        'tooltip': 'Adapter Content',
+        'tooltip': 'The cumulative percentage of adapter sequences at each position',
         'derived_from': 'fastqc:adapter_content',
         'type': str
     },
     'Total Sequences': {
         'key': 'Total Sequences',
-        'tooltip': 'Total Sequences',
+        'tooltip': 'Total number of sequences',
         'derived_from': 'fastqc:total_sequences',
         'type': int
     },
     'Sequence Length': {
         'key': 'Sequence Length',
-        'tooltip': 'Sequence Length',
+        'tooltip': 'Length of sequences',
         'derived_from': 'fastqc:sequence_length',
         'type': int
     }
