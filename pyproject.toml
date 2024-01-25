@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qc-parser"
-version = "0.0.8"
+version = "0.0.9"
 description = "Parses outputs of different QC tools and unifies them for the SMaHT portal"
 authors = ["Alexander Veit <alexander_veit@hms.harvard.edu>", "Michele Berselli <berselli.michele@gmail.com>"]
 license = "MIT"
@@ -39,4 +39,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 parse-qc = "src.parse_qc:parse_qc"
-

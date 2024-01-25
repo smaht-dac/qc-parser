@@ -88,13 +88,22 @@ class Parser:
 
     def parse_picard_CollectAlignmentSummaryMetrics(self) -> List[QMValue]:
         qm_values = []
-        header, pair = [], []
+        header, pair, unpair = [], [], []
         with open(self.path) as fi:
             for line in fi:
                 if line.startswith('CATEGORY'):
                     header = line.rstrip().split('\t')
                 elif line.startswith('PAIR'):
                     pair = line.rstrip().split('\t')
+                elif line.startswith('UNPAIRED'):
+                    unpair = line.rstrip().split('\t')
+
+        # Check for both PAIR and UNPAIRED -> ERROR
+        if pair and unpair:
+            sys.exit(
+                f"Paired-end BAM file contains unpaired reads")
+        elif unpair:
+            pair = unpair
 
         for i, field in enumerate(header):
             if field in metrics[PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS]:
