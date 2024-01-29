@@ -220,12 +220,12 @@ picard_CollectWgsMetrics_metrics = {
 }
 
 bamstats_metrics = {
-    # 'Estimate_Average_Coverage': {
-    #     'key': 'Estimated Average Coverage [bamstats]',
-    #     'tooltip': 'Estimated average coverage',
-    #     'derived_from': 'bamstats:estimate_average_coverage',
-    #     'type': float
-    # },
+    'Estimate_Average_Coverage': {
+        'key': 'Estimated Average Coverage [bamstats]',
+        'tooltip': 'Estimated average coverage',
+        'derived_from': 'bamstats:estimate_average_coverage',
+        'type': float
+    },
     'Number_of_Uniquely_Aligned_Reads_with_Q_>=_10': {
         'key': 'Uniquely Aligned Reads with Q>=10 [bamstats]',
         'tooltip': 'Uniquely aligned reads with Q>=10',
