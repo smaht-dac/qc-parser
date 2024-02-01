@@ -163,13 +163,13 @@ picard_CollectAlignmentSummaryMetrics_metrics = {
         'key': 'Mean Read Length [Picard]',
         'tooltip': 'The mean length of the set of reads examined',
         'derived_from': 'picard_collect_alignment_summary_metrics:mean_read_length',
-        'type': int
+        'type': float
     },
     'SD_READ_LENGTH': {
         'key': 'Read Length Standard Deviation [Picard]',
         'tooltip': 'The standard deviation for the length of the set of reads examined',
         'derived_from': 'picard_collect_alignment_summary_metrics:sd_read_length',
-        'type': int
+        'type': float
     },
 }
 
@@ -305,7 +305,7 @@ rnaseqqc_metrics = {
         'key': 'Duplicate Rate of Mapped',
         'tooltip': 'This is the proportion of all reads which were marked as PCR/optical duplicates out of all mapped reads; excludes secondary and vendor QC failed reads',
         'derived_from': 'rnaseqqc:duplicate_rate_of_mapped',
-        'type': int
+        'type': float
     },
     'End 1 Antisense': {
         'key': 'End 1 Antisense',

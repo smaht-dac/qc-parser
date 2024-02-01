@@ -175,4 +175,4 @@ class Parser:
         try:
             return to_type(value)
         except (ValueError, TypeError):
-            return default
+            raise ValueError(f"Value {value} is not of type {to_type}")
