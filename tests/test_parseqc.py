@@ -103,3 +103,31 @@ def test_samtools_picard():
     assert len(data["qc_values"]) == 25
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
+def test_nanoplot():
+    pv = platform.python_version()
+    metrics = "./tests/data/NanoPlot.txt"
+    qc_values = f"tmp.nanoplot.qc_values.{pv}.json"
+    metrics_zip = f"tmp.nanoplot.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'nanoplot' "
+        f"--metrics nanoplot {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == 'Mean read length'
+    assert data["qc_values"][0]["value"] == 59364.0
+    assert data["qc_values"][11]["key"] == 'Percentage of reads above quality Q12'
+    assert data["qc_values"][11]["value"] == 86.8
+    assert len(data["qc_values"]) == 13
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")

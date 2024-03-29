@@ -39,6 +39,7 @@ The currently supported QC tools are:
 - bamStats.py
 - fastqc
 - rnaseqqc (RNA-SeQC)
+- nanoplot (NanoPlot)
 
 ## Development
 

@@ -1,5 +1,15 @@
 import sys
-from src.metrics_to_extract import metrics, SAMTOOLS_STATS, BAMSTATS, RNASEQQC, PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS, PICARD_COLLECT_INSERT_SIZE_METRICS, PICARD_COLLECT_WGS_METRICS, FASTQC
+from src.metrics_to_extract import (
+    metrics,
+    SAMTOOLS_STATS,
+    BAMSTATS,
+    RNASEQQC,
+    PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS,
+    PICARD_COLLECT_INSERT_SIZE_METRICS,
+    PICARD_COLLECT_WGS_METRICS,
+    FASTQC,
+    NANOPLOT
+)
 from src.QMGeneric import QMValue
 from typing import List
 import json
@@ -28,25 +38,30 @@ class Parser:
             return self.parse_bamstats()
         elif self.tool == FASTQC:
             return self.parse_fastqc()
+        elif self.tool == NANOPLOT:
+            return self.parse_nanoplot()
         else:
-            sys.exit(
-                f"{self.tool} is not supported. Please add a parser to Parser.py")
+            sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
 
     def parse_samtools_stats(self) -> List[QMValue]:
         qm_values = []
         # Parse file and save values
         with open(self.path) as fi:
             for line in fi:
-                if line.startswith('SN'):
-                    line = line.rstrip().split('\t')
-                    field, value = line[1].replace(':', ''), line[2]
+                if line.startswith("SN"):
+                    line = line.rstrip().split("\t")
+                    field, value = line[1].replace(":", ""), line[2]
                     if field in metrics[SAMTOOLS_STATS]:
                         m = metrics[SAMTOOLS_STATS][field]
                         value_cast = self.safe_cast(value, m["type"])
                         if value_cast == None:
                             continue
                         qmv = QMValue(
-                            m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
+                            m["key"],
+                            value_cast,
+                            tooltip=m["tooltip"],
+                            derived_from=m["derived_from"],
+                        )
                         qm_values.append(qmv)
         return qm_values
 
@@ -63,7 +78,11 @@ class Parser:
                 if value_cast == None:
                     continue
                 qmv = QMValue(
-                    m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
+                    m["key"],
+                    value_cast,
+                    tooltip=m["tooltip"],
+                    derived_from=m["derived_from"],
+                )
                 qm_values.append(qmv)
         fi.close()
         return qm_values
@@ -73,12 +92,16 @@ class Parser:
         # Parse file and save values
         with open(self.path) as fi:
             for line in fi:
-                value, field, _ = line.rstrip().split('\t')
+                value, field, _ = line.rstrip().split("\t")
                 if field in metrics[FASTQC]:
                     m = metrics[FASTQC][field]
                     value_cast = self.safe_cast(value, m["type"])
                     qmv = QMValue(
-                        m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
+                        m["key"],
+                        value_cast,
+                        tooltip=m["tooltip"],
+                        derived_from=m["derived_from"],
+                    )
                     qm_values.append(qmv)
         return qm_values
 
@@ -86,22 +109,53 @@ class Parser:
         # TODO
         return
 
+    def parse_nanoplot(self) -> List[QMValue]:
+        qm_values = []
+        # Parse file and save values
+        with open(self.path) as fi:
+            for line in fi:
+                columns = line.rstrip().split(":")
+                if len(columns) != 2:
+                    continue
+                field = columns[0]
+                value = columns[1]
+  
+                if field in metrics[NANOPLOT]:
+                    m = metrics[NANOPLOT][field]
+                    if field.startswith(">Q"):
+                        value_extracted = value.split("(")[1]
+                        value_extracted = value_extracted.split(")")[0]
+                        value_extracted = value_extracted.replace("%","")
+                        value_cast = self.safe_cast(value_extracted, m["type"])
+                    else:
+                        # Can't convert '2.0' directly to int
+                        value_stripped = float(value.strip().replace(",",""))
+                        value_cast = self.safe_cast(value_stripped, m["type"])
+                    qmv = QMValue(
+                        m["key"],
+                        value_cast,
+                        tooltip=m["tooltip"],
+                        derived_from=m["derived_from"],
+                    )
+                    qm_values.append(qmv)
+        return qm_values
+
+
     def parse_picard_CollectAlignmentSummaryMetrics(self) -> List[QMValue]:
         qm_values = []
         header, pair, unpair = [], [], []
         with open(self.path) as fi:
             for line in fi:
-                if line.startswith('CATEGORY'):
-                    header = line.rstrip().split('\t')
-                elif line.startswith('PAIR'):
-                    pair = line.rstrip().split('\t')
-                elif line.startswith('UNPAIRED'):
-                    unpair = line.rstrip().split('\t')
+                if line.startswith("CATEGORY"):
+                    header = line.rstrip().split("\t")
+                elif line.startswith("PAIR"):
+                    pair = line.rstrip().split("\t")
+                elif line.startswith("UNPAIRED"):
+                    unpair = line.rstrip().split("\t")
 
         # Check for both PAIR and UNPAIRED -> ERROR
         if pair and unpair:
-            sys.exit(
-                f"Paired-end BAM file contains unpaired reads")
+            sys.exit(f"Paired-end BAM file contains unpaired reads")
         elif unpair:
             pair = unpair
 
@@ -112,7 +166,11 @@ class Parser:
                 if value_cast == None:
                     continue
                 qmv = QMValue(
-                    m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
+                    m["key"],
+                    value_cast,
+                    tooltip=m["tooltip"],
+                    derived_from=m["derived_from"],
+                )
                 qm_values.append(qmv)
         return qm_values
 
@@ -123,13 +181,13 @@ class Parser:
             for line in fi:
                 line = line.rstrip()
                 if line:
-                    if line.startswith('## HISTOGRAM'):
+                    if line.startswith("## HISTOGRAM"):
                         break
-                    elif line.startswith('MEDIAN_INSERT_SIZE'):
+                    elif line.startswith("MEDIAN_INSERT_SIZE"):
                         is_block = True
-                        header = line.split('\t')
+                        header = line.split("\t")
                     elif is_block:
-                        line = line.split('\t')
+                        line = line.split("\t")
                         pairs.append(line)
 
         for pair in pairs:
@@ -141,7 +199,11 @@ class Parser:
                     if value_cast == None:
                         continue
                     qmv = QMValue(
-                        m["key"]+f' ({orientation}) [Picard]', value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
+                        m["key"] + f" ({orientation}) [Picard]",
+                        value_cast,
+                        tooltip=m["tooltip"],
+                        derived_from=m["derived_from"],
+                    )
                     qm_values.append(qmv)
         return qm_values
 
@@ -152,13 +214,13 @@ class Parser:
             for line in fi:
                 line = line.rstrip()
                 if line:
-                    if line.startswith('## HISTOGRAM'):
+                    if line.startswith("## HISTOGRAM"):
                         break
-                    elif line.startswith('GENOME_TERRITORY'):
+                    elif line.startswith("GENOME_TERRITORY"):
                         is_block = True
-                        header = line.split('\t')
+                        header = line.split("\t")
                     elif is_block:
-                        stats = line.split('\t')
+                        stats = line.split("\t")
 
         for i, field in enumerate(header):
             if field in metrics[PICARD_COLLECT_WGS_METRICS]:
@@ -167,7 +229,11 @@ class Parser:
                 if value_cast == None:
                     continue
                 qmv = QMValue(
-                    m["key"], value_cast, tooltip=m["tooltip"], derived_from=m["derived_from"])
+                    m["key"],
+                    value_cast,
+                    tooltip=m["tooltip"],
+                    derived_from=m["derived_from"],
+                )
                 qm_values.append(qmv)
         return qm_values
 
