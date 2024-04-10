@@ -124,9 +124,9 @@ def test_nanoplot():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert data["qc_values"][0]["key"] == 'Mean read length'
+    assert data["qc_values"][0]["key"] == 'Mean Read Length'
     assert data["qc_values"][0]["value"] == 59364.0
-    assert data["qc_values"][11]["key"] == 'Percentage of reads above quality Q12'
+    assert data["qc_values"][11]["key"] == 'Percentage of Reads Above Quality Q12'
     assert data["qc_values"][11]["value"] == 86.8
     assert len(data["qc_values"]) == 13
 
