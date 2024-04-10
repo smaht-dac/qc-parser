@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qc-parser"
-version = "0.0.11"
+version = "0.0.12"
 description = "Parses outputs of different QC tools and unifies them for the SMaHT portal"
 authors = ["Alexander Veit <alexander_veit@hms.harvard.edu>", "Michele Berselli <berselli.michele@gmail.com>"]
 license = "MIT"
