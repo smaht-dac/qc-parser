@@ -604,14 +604,14 @@ fastqc_metrics = {
 
 nanoplot_metrics = {
     'Mean read length': {
-        'key': 'Mean read length',
-        'tooltip': 'Mean read length',
+        'key': 'Mean Read Length',
+        'tooltip': 'Mean Read Length',
         'derived_from': 'nanoplot:mean_read_length',
         'type': float
     },
     'Mean read quality': {
-        'key': 'Mean read quality',
-        'tooltip': 'Mean read quality',
+        'key': 'Mean Read Quality',
+        'tooltip': 'Mean Read Quality',
         'derived_from': 'nanoplot:mean_read_quality',
         'type': float
     },
@@ -622,62 +622,62 @@ nanoplot_metrics = {
         'type': float
     },
     'Median read quality': {
-        'key': 'Median read quality',
-        'tooltip': 'Median read quality',
+        'key': 'Median Read Quality',
+        'tooltip': 'Median Read Quality',
         'derived_from': 'nanoplot:median_read_quality',
         'type': float
     },
     'Number of reads': {
-        'key': 'Number of reads',
-        'tooltip': 'Number of reads',
+        'key': 'Number of Reads',
+        'tooltip': 'Number of Reads',
         'derived_from': 'nanoplot:number_of_reads',
         'type': int
     },
     'Read length N50': {
-        'key': 'Read length N50',
-        'tooltip': 'Read length N50',
+        'key': 'Read Length N50',
+        'tooltip': 'Read Length N50. Represents the length of the shortest read in the group of longest sequences that together represent (at least) 50% of the nucleotides in the set of sequences',
         'derived_from': 'nanoplot:read_length_n50',
         'type': float
     },
     'STDEV read length': {
-        'key': 'STDEV read length',
-        'tooltip': 'STDEV read length',
+        'key': 'STDEV Read Length',
+        'tooltip': 'STDEV Read Length',
         'derived_from': 'nanoplot:stdev_read_length',
         'type': float
     },
     'Total bases': {
-        'key': 'Total bases',
-        'tooltip': 'Total bases',
+        'key': 'Total Bases',
+        'tooltip': 'Total number of bases',
         'derived_from': 'nanoplot:total_bases',
         'type': int
     },
     '>Q5': {
-        'key': 'Percentage of reads above quality Q5',
-        'tooltip': 'Percentage of reads above quality Q5',
+        'key': 'Percentage of Reads Above Quality Q5',
+        'tooltip': 'Percentage of Reads Above Quality Q5',
         'derived_from': 'nanoplot:percentage_reads_above_q5',
         'type': float
     },
     '>Q7': {
-        'key': 'Percentage of reads above quality Q7',
-        'tooltip': 'Percentage of reads above quality Q7',
+        'key': 'Percentage of Reads Above Quality Q7',
+        'tooltip': 'Percentage of Reads Above Quality Q7',
         'derived_from': 'nanoplot:percentage_reads_above_q7',
         'type': float
     },
     '>Q10': {
-        'key': 'Percentage of reads above quality Q10',
-        'tooltip': 'Percentage of reads above quality Q10',
+        'key': 'Percentage of Reads Above Quality Q10',
+        'tooltip': 'Percentage of Reads Above Quality Q10',
         'derived_from': 'nanoplot:percentage_reads_above_q10',
         'type': float
     },
     '>Q12': {
-        'key': 'Percentage of reads above quality Q12',
-        'tooltip': 'Percentage of reads above quality Q12',
+        'key': 'Percentage of Reads Above Quality Q12',
+        'tooltip': 'Percentage of Reads Above Quality Q12',
         'derived_from': 'nanoplot:percentage_reads_above_q12',
         'type': float
     },
     '>Q15': {
-        'key': 'Percentage of reads above quality Q15',
-        'tooltip': 'Percentage of reads above quality Q15',
+        'key': 'Percentage of Reads Above Quality Q15',
+        'tooltip': 'Percentage of Reads Above Quality Q15',
         'derived_from': 'nanoplot:percentage_reads_above_q15',
         'type': float
     },
