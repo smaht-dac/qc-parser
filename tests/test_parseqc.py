@@ -126,7 +126,7 @@ def test_nanoplot():
 
     assert data["qc_values"][0]["key"] == 'Mean Read Length'
     assert data["qc_values"][0]["value"] == 59364.0
-    assert data["qc_values"][11]["key"] == 'Percentage of Reads Above Quality Q12'
+    assert data["qc_values"][11]["key"] == 'Reads >Q12'
     assert data["qc_values"][11]["value"] == 86.8
     assert len(data["qc_values"]) == 13
 
