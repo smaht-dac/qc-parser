@@ -36,7 +36,7 @@ The currently supported QC tools are:
 - picard_CollectAlignmentSummaryMetrics
 - picard_CollectInsertSizeMetrics
 - picard_CollectWgsMetrics
-- bamStats.py
+- bamstats (bamStats.py)
 - fastqc (FastQC)
 - rnaseqqc (RNA-SeQC)
 - nanoplot (NanoPlot)
