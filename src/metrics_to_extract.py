@@ -605,43 +605,43 @@ fastqc_metrics = {
 nanoplot_metrics = {
     'Mean read length': {
         'key': 'Mean Read Length',
-        'tooltip': 'Mean Read Length',
+        'tooltip': 'Mean length of the reads',
         'derived_from': 'nanoplot:mean_read_length',
         'type': float
     },
     'Mean read quality': {
         'key': 'Mean Read Quality',
-        'tooltip': 'Mean Read Quality',
+        'tooltip': 'Mean quality of the reads',
         'derived_from': 'nanoplot:mean_read_quality',
         'type': float
     },
     'Median read length': {
-        'key': 'Median read length',
-        'tooltip': 'Median read length',
+        'key': 'Median Read Length',
+        'tooltip': 'Median length of the reads',
         'derived_from': 'nanoplot:median_read_length',
         'type': float
     },
     'Median read quality': {
         'key': 'Median Read Quality',
-        'tooltip': 'Median Read Quality',
+        'tooltip': 'Median quality of the reads',
         'derived_from': 'nanoplot:median_read_quality',
         'type': float
     },
     'Number of reads': {
-        'key': 'Number of Reads',
-        'tooltip': 'Number of Reads',
+        'key': 'Reads Number',
+        'tooltip': 'Total number of reads',
         'derived_from': 'nanoplot:number_of_reads',
         'type': int
     },
     'Read length N50': {
         'key': 'Read Length N50',
-        'tooltip': 'Read Length N50. Represents the length of the shortest read in the group of longest sequences that together represent (at least) 50% of the nucleotides in the set of sequences',
+        'tooltip': 'Read length N50. Represents the length of the shortest read in the group of longest sequences that together represent (at least) 50% of the nucleotides in the set of sequences',
         'derived_from': 'nanoplot:read_length_n50',
         'type': float
     },
     'STDEV read length': {
-        'key': 'STDEV Read Length',
-        'tooltip': 'STDEV Read Length',
+        'key': 'Read Length STDEV',
+        'tooltip': 'Standard deviation of the reads length',
         'derived_from': 'nanoplot:stdev_read_length',
         'type': float
     },
@@ -652,32 +652,32 @@ nanoplot_metrics = {
         'type': int
     },
     '>Q5': {
-        'key': 'Percentage of Reads Above Quality Q5',
-        'tooltip': 'Percentage of Reads Above Quality Q5',
+        'key': 'Reads >Q5',
+        'tooltip': 'Percentage of reads above quality Q5',
         'derived_from': 'nanoplot:percentage_reads_above_q5',
         'type': float
     },
     '>Q7': {
-        'key': 'Percentage of Reads Above Quality Q7',
-        'tooltip': 'Percentage of Reads Above Quality Q7',
+        'key': 'Reads >Q7',
+        'tooltip': 'Percentage of reads above quality Q7',
         'derived_from': 'nanoplot:percentage_reads_above_q7',
         'type': float
     },
     '>Q10': {
-        'key': 'Percentage of Reads Above Quality Q10',
-        'tooltip': 'Percentage of Reads Above Quality Q10',
+        'key': 'Reads >Q10',
+        'tooltip': 'Percentage of reads above quality Q10',
         'derived_from': 'nanoplot:percentage_reads_above_q10',
         'type': float
     },
     '>Q12': {
-        'key': 'Percentage of Reads Above Quality Q12',
-        'tooltip': 'Percentage of Reads Above Quality Q12',
+        'key': 'Reads >Q12',
+        'tooltip': 'Percentage of reads above quality Q12',
         'derived_from': 'nanoplot:percentage_reads_above_q12',
         'type': float
     },
     '>Q15': {
-        'key': 'Percentage of Reads Above Quality Q15',
-        'tooltip': 'Percentage of Reads Above Quality Q15',
+        'key': 'Reads >Q15',
+        'tooltip': 'Percentage of reads above quality Q15',
         'derived_from': 'nanoplot:percentage_reads_above_q15',
         'type': float
     },
