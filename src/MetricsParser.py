@@ -3,7 +3,7 @@ from src.metrics_to_extract import (
     metrics,
     SAMTOOLS_STATS,
     BAMSTATS,
-    RNASEQQC,
+    RNASEQC,
     PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS,
     PICARD_COLLECT_INSERT_SIZE_METRICS,
     PICARD_COLLECT_WGS_METRICS,
@@ -32,8 +32,8 @@ class Parser:
             return self.parse_picard_CollectInsertSizeMetrics()
         elif self.tool == PICARD_COLLECT_WGS_METRICS:
             return self.parse_picard_CollectWgsMetrics()
-        elif self.tool == RNASEQQC:
-            return self.parse_rnaseqqc()
+        elif self.tool == RNASEQC:
+            return self.parse_rnaseqc()
         elif self.tool == BAMSTATS:
             return self.parse_bamstats()
         elif self.tool == FASTQC:
@@ -105,9 +105,23 @@ class Parser:
                     qm_values.append(qmv)
         return qm_values
 
-    def parse_rnaseqqc(self) -> List[QMValue]:
-        # TODO
-        return
+    def parse_rnaseqc(self) -> List[QMValue]:
+        qm_values = []
+        with open(self.path) as f:
+            rnaseqc_results = json.load(f)
+            for field in rnaseqc_results.keys():
+                value = rnaseqc_results[field]
+                if field in metrics[RNASEQC]:
+                    m = metrics[RNASEQC][field]
+                    value_cast = self.safe_cast(value, m["type"])
+                    qmv = QMValue(
+                        m["key"],
+                        value_cast,
+                        tooltip=m["tooltip"],
+                        derived_from=m["derived_from"],
+                    )
+                    qm_values.append(qmv)
+        return qm_values
 
     def parse_nanoplot(self) -> List[QMValue]:
         qm_values = []

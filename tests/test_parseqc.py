@@ -131,3 +131,31 @@ def test_nanoplot():
     assert len(data["qc_values"]) == 13
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
+def test_rnaseqc():
+    pv = platform.python_version()
+    metrics = "./tests/data/RNA-SeQC.txt"
+    qc_values = f"tmp.rnaseqc.qc_values.{pv}.json"
+    metrics_zip = f"tmp.rnaseqc.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'rnaseqc' "
+        f"--metrics rnaseqc {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == 'Mapping Rate'
+    assert data["qc_values"][0]["value"] == 0.937137
+    assert data["qc_values"][16]["key"] == 'Alternative Alignments'
+    assert data["qc_values"][16]["value"] == 52179522
+    assert len(data["qc_values"]) == 46
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")

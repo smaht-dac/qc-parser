@@ -38,7 +38,7 @@ The currently supported QC tools are:
 - picard_CollectWgsMetrics
 - bamstats (bamStats.py)
 - fastqc (FastQC)
-- rnaseqqc (RNA-SeQC)
+- rnaseqc (RNA-SeQC)
 - nanoplot (NanoPlot)
 
 ## Development
