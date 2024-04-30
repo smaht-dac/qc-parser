@@ -395,19 +395,19 @@ rnaseqc_metrics = {
     'Exons with >0 reads': {
         'key': 'Exons with >0 Reads',
         'tooltip': 'The number of exons with >0 reads',
-        'derived_from': 'rnaseqc:Exons_with_>0_reads',
+        'derived_from': 'rnaseqc:exons_with_>0_reads',
         'type': int
     },
     'Exons with >=2 reads': {
         'key': 'Exons with >=2 Reads',
         'tooltip': 'The number of exons with >=2 reads',
-        'derived_from': 'rnaseqc:Exons_with_>2_reads',
+        'derived_from': 'rnaseqc:exons_with_>2_reads',
         'type': int
     },
     'Exons with >=10 reads': {
         'key': 'Exons with >=10 Reads',
         'tooltip': 'The number of exons with >=10 reads',
-        'derived_from': 'rnaseqc:Exons_with_>10_reads',
+        'derived_from': 'rnaseqc:exons_with_>10_reads',
         'type': int
     },
     'Failed Vendor QC': {
