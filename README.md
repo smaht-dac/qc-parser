@@ -32,10 +32,10 @@ additional_output_2.tsv
 ```
 
 The currently supported QC tools are:
-- samtools_stats
-- picard_CollectAlignmentSummaryMetrics
-- picard_CollectInsertSizeMetrics
-- picard_CollectWgsMetrics
+- samtools_stats (Samtools stats)
+- picard_CollectAlignmentSummaryMetrics (Picard CollectAlignmentSummaryMetrics)
+- picard_CollectInsertSizeMetrics (Picard CollectInsertSizeMetrics)
+- picard_CollectWgsMetrics (Picard CollectWgsMetrics)
 - bamstats (bamStats.py)
 - fastqc (FastQC)
 - rnaseqc (RNA-SeQC)
