@@ -207,14 +207,14 @@ picard_CollectWgsMetrics_metrics = {
         'type': int
     },
     'MEAN_COVERAGE': {
-        'key': 'Mean Coverage [Picard]',
-        'tooltip': 'The mean coverage of the genome',
+        'key': 'Mean Coverage (250x) [Picard]',
+        'tooltip': 'The mean coverage of the genome, capped at 250x. Positions with coverage exceeding 250x are treated as if they had 250x coverage',
         'derived_from': 'picard_collect_wgs_metrics:mean_coverage',
         'type': float
     },
     'SD_COVERAGE': {
-        'key': 'Coverage Standard Deviation [Picard]',
-        'tooltip': 'The standard deviation for the coverage',
+        'key': 'Coverage Standard Deviation (250x) [Picard]',
+        'tooltip': 'The standard deviation for the coverage, capped at 250x. Positions with coverage exceeding 250x are treated as if they had 250x coverage',
         'derived_from': 'picard_collect_wgs_metrics:sd_coverage',
         'type': float
     },
