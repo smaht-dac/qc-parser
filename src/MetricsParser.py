@@ -1,15 +1,20 @@
+# Supported tools
+SAMTOOLS_STATS = "samtools_stats"
+BAMSTATS = "bamstats"
+RNASEQC = "rnaseqc"
+PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS = "picard_CollectAlignmentSummaryMetrics"
+PICARD_COLLECT_INSERT_SIZE_METRICS = "picard_CollectInsertSizeMetrics"
+PICARD_COLLECT_WGS_METRICS = "picard_CollectWgsMetrics"
+FASTQC = "fastqc"
+NANOPLOT = "nanoplot"
+
 import sys
-from src.metrics_to_extract import (
-    metrics,
-    SAMTOOLS_STATS,
-    BAMSTATS,
-    RNASEQC,
-    PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS,
-    PICARD_COLLECT_INSERT_SIZE_METRICS,
-    PICARD_COLLECT_WGS_METRICS,
-    FASTQC,
-    NANOPLOT
+from src.metrics_to_extract import metrics
+from src.metrics_to_calculate import (
+    samtools_stats_calculated_metrics,
+    bamstats_calculated_metrics,
 )
+from src.utils import add_calculated_metrics, safe_cast
 from src.QMGeneric import QMValue
 from typing import List
 import json
@@ -53,16 +58,12 @@ class Parser:
                     field, value = line[1].replace(":", ""), line[2]
                     if field in metrics[SAMTOOLS_STATS]:
                         m = metrics[SAMTOOLS_STATS][field]
-                        value_cast = self.safe_cast(value, m["type"])
+                        value_cast = safe_cast(value, m["type"])
                         if value_cast == None:
                             continue
-                        qmv = QMValue(
-                            m["key"],
-                            value_cast,
-                            tooltip=m["tooltip"],
-                            derived_from=m["derived_from"],
-                        )
+                        qmv = QMValue(m, value_cast)
                         qm_values.append(qmv)
+        add_calculated_metrics(qm_values, samtools_stats_calculated_metrics)
         return qm_values
 
     def parse_bamstats(self) -> List[QMValue]:
@@ -74,17 +75,13 @@ class Parser:
             if key in metrics[BAMSTATS]:
                 m = metrics[BAMSTATS][key]
                 value = bamstats_res[key]
-                value_cast = self.safe_cast(value, m["type"])
+                value_cast = safe_cast(value, m["type"])
                 if value_cast == None:
                     continue
-                qmv = QMValue(
-                    m["key"],
-                    value_cast,
-                    tooltip=m["tooltip"],
-                    derived_from=m["derived_from"],
-                )
+                qmv = QMValue(m, value_cast)
                 qm_values.append(qmv)
         fi.close()
+        add_calculated_metrics(qm_values, bamstats_calculated_metrics)
         return qm_values
 
     def parse_fastqc(self) -> List[QMValue]:
@@ -95,13 +92,8 @@ class Parser:
                 value, field, _ = line.rstrip().split("\t")
                 if field in metrics[FASTQC]:
                     m = metrics[FASTQC][field]
-                    value_cast = self.safe_cast(value, m["type"])
-                    qmv = QMValue(
-                        m["key"],
-                        value_cast,
-                        tooltip=m["tooltip"],
-                        derived_from=m["derived_from"],
-                    )
+                    value_cast = safe_cast(value, m["type"])
+                    qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
         return qm_values
 
@@ -113,13 +105,8 @@ class Parser:
                 value = rnaseqc_results[field]
                 if field in metrics[RNASEQC]:
                     m = metrics[RNASEQC][field]
-                    value_cast = self.safe_cast(value, m["type"])
-                    qmv = QMValue(
-                        m["key"],
-                        value_cast,
-                        tooltip=m["tooltip"],
-                        derived_from=m["derived_from"],
-                    )
+                    value_cast = safe_cast(value, m["type"])
+                    qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
         return qm_values
 
@@ -133,27 +120,21 @@ class Parser:
                     continue
                 field = columns[0]
                 value = columns[1]
-  
+
                 if field in metrics[NANOPLOT]:
                     m = metrics[NANOPLOT][field]
                     if field.startswith(">Q"):
                         value_extracted = value.split("(")[1]
                         value_extracted = value_extracted.split(")")[0]
-                        value_extracted = value_extracted.replace("%","")
-                        value_cast = self.safe_cast(value_extracted, m["type"])
+                        value_extracted = value_extracted.replace("%", "")
+                        value_cast = safe_cast(value_extracted, m["type"])
                     else:
                         # Can't convert '2.0' directly to int
-                        value_stripped = float(value.strip().replace(",",""))
-                        value_cast = self.safe_cast(value_stripped, m["type"])
-                    qmv = QMValue(
-                        m["key"],
-                        value_cast,
-                        tooltip=m["tooltip"],
-                        derived_from=m["derived_from"],
-                    )
+                        value_stripped = float(value.strip().replace(",", ""))
+                        value_cast = safe_cast(value_stripped, m["type"])
+                    qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
         return qm_values
-
 
     def parse_picard_CollectAlignmentSummaryMetrics(self) -> List[QMValue]:
         qm_values = []
@@ -176,15 +157,10 @@ class Parser:
         for i, field in enumerate(header):
             if field in metrics[PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS]:
                 m = metrics[PICARD_COLLECT_ALIGNMENT_SUMMARY_METRICS][field]
-                value_cast = self.safe_cast(pair[i], m["type"])
+                value_cast = safe_cast(pair[i], m["type"])
                 if value_cast == None:
                     continue
-                qmv = QMValue(
-                    m["key"],
-                    value_cast,
-                    tooltip=m["tooltip"],
-                    derived_from=m["derived_from"],
-                )
+                qmv = QMValue(m, value_cast)
                 qm_values.append(qmv)
         return qm_values
 
@@ -209,15 +185,10 @@ class Parser:
             for i, field in enumerate(header):
                 if field in metrics[PICARD_COLLECT_INSERT_SIZE_METRICS]:
                     m = metrics[PICARD_COLLECT_INSERT_SIZE_METRICS][field]
-                    value_cast = self.safe_cast(pair[i], m["type"])
+                    value_cast = safe_cast(pair[i], m["type"])
                     if value_cast == None:
                         continue
-                    qmv = QMValue(
-                        m["key"] + f" ({orientation}) [Picard]",
-                        value_cast,
-                        tooltip=m["tooltip"],
-                        derived_from=m["derived_from"],
-                    )
+                    qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
         return qm_values
 
@@ -239,20 +210,9 @@ class Parser:
         for i, field in enumerate(header):
             if field in metrics[PICARD_COLLECT_WGS_METRICS]:
                 m = metrics[PICARD_COLLECT_WGS_METRICS][field]
-                value_cast = self.safe_cast(stats[i], m["type"])
+                value_cast = safe_cast(stats[i], m["type"])
                 if value_cast == None:
                     continue
-                qmv = QMValue(
-                    m["key"],
-                    value_cast,
-                    tooltip=m["tooltip"],
-                    derived_from=m["derived_from"],
-                )
+                qmv = QMValue(m, value_cast)
                 qm_values.append(qmv)
         return qm_values
-
-    def safe_cast(self, value, to_type, default=None):
-        try:
-            return to_type(value)
-        except (ValueError, TypeError):
-            raise ValueError(f"Value {value} is not of type {to_type}")

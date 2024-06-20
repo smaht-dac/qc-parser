@@ -1,3 +1,13 @@
+0.1.0
+=====
+
+* Run Python formatter on codebase
+* Added the `visible` flag to various metrics
+* Add tests for bamstats
+* Some refactoring to better deal with potential additions to the QualityMetric item schema
+* Allow definition of additional metrics that can be calculated from extracted metrics
+
+
 0.0.14
 =====
 

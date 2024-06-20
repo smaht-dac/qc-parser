@@ -3,6 +3,7 @@
 # The command line was:  stats rna_example.bam
 # CHK, Checksum	[2]Read Names	[3]Sequences	[4]Qualities
 # CHK, CRC32 of reads which passed filtering followed by addition (32bit overflow)
+# THIS FILE HAS BEEN MODIFIED TO ACCOMODATE VARIOUS TEST SCENARIOS
 CHK	ab5903cd	bb8753ab	20f3f0b9
 # Summary Numbers. Use `grep ^SN | cut -f 2-` to extract this part.
 SN	raw total sequences:	3363576
@@ -15,7 +16,7 @@ SN	reads mapped:	3363576
 SN	reads mapped and paired:	0	# paired-end technology bit set + both mates mapped
 SN	reads unmapped:	0
 SN	reads properly paired:	0	# proper-pair bit set
-SN	reads paired:	0	# paired-end technology bit set
+SN	reads paired:	3361575	# paired-end technology bit set
 SN	reads duplicated:	0	# PCR or optical duplicate bit set
 SN	reads MQ0:	93477	# mapped and MQ=0
 SN	reads QC failed:	0

@@ -1,6 +1,7 @@
 import pytest
 import os, platform
 import json
+import pprint
 
 
 def test_fastqc():
@@ -27,6 +28,7 @@ def test_fastqc():
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
+
 def test_samtools():
     pv = platform.python_version()
     samtools_stats = "./tests/data/samtool_stats_res.txt"
@@ -47,10 +49,21 @@ def test_samtools():
     data = json.load(qc_file)
     qc_file.close()
 
-    #assert data["name"] == "BAM Quality Metrics"
-    assert len(data["qc_values"]) == 18
+    # Test postprocessed metrics
+    percentage_paired_reads = next(
+        item
+        for item in data["qc_values"]
+        if item["derived_from"]
+        == "samtools_stats_postprocessed:percentage_paired_reads"
+    )
+    assert percentage_paired_reads["value"] == 99.94050974320187
+
+    # assert data["name"] == "BAM Quality Metrics"
+    pprint.pprint(data["qc_values"])
+    assert len(data["qc_values"]) == 24
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
 
 def test_picard_1():
     pv = platform.python_version()
@@ -72,10 +85,11 @@ def test_picard_1():
     data = json.load(qc_file)
     qc_file.close()
 
-    #assert data["name"] == "picard_collectAlignmentSummaryMetrics"
+    # assert data["name"] == "picard_collectAlignmentSummaryMetrics"
     assert len(data["qc_values"]) == 7
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
 
 def test_samtools_picard():
     pv = platform.python_version()
@@ -99,10 +113,36 @@ def test_samtools_picard():
     data = json.load(qc_file)
     qc_file.close()
 
-    #assert data["name"] == "samtools picard"
-    assert len(data["qc_values"]) == 25
+    # assert data["name"] == "samtools picard"
+    assert len(data["qc_values"]) == 31
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
+def test_bamstats():
+    pv = platform.python_version()
+    bamstats_res = "./tests/data/bamstats_res.txt"
+    qc_values = f"tmp.bamstats.qc_values.{pv}.json"
+    metrics_zip = f"tmp.bamstats.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'bamstats' "
+        f"--metrics bamstats {bamstats_res} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert len(data["qc_values"]) == 6
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
 
 def test_nanoplot():
     pv = platform.python_version()
@@ -124,13 +164,14 @@ def test_nanoplot():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert data["qc_values"][0]["key"] == 'Mean Read Length'
+    assert data["qc_values"][0]["key"] == "Mean Read Length"
     assert data["qc_values"][0]["value"] == 59364.0
-    assert data["qc_values"][11]["key"] == 'Reads >Q12'
+    assert data["qc_values"][11]["key"] == "Reads >Q12"
     assert data["qc_values"][11]["value"] == 86.8
     assert len(data["qc_values"]) == 13
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
 
 def test_rnaseqc():
     pv = platform.python_version()
@@ -152,9 +193,9 @@ def test_rnaseqc():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert data["qc_values"][0]["key"] == 'Mapping Rate'
+    assert data["qc_values"][0]["key"] == "Mapping Rate"
     assert data["qc_values"][0]["value"] == 0.937137
-    assert data["qc_values"][16]["key"] == 'Alternative Alignments'
+    assert data["qc_values"][16]["key"] == "Alternative Alignments"
     assert data["qc_values"][16]["value"] == 52179522
     assert len(data["qc_values"]) == 46
 

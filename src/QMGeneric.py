@@ -1,11 +1,13 @@
 import json
 import zipfile
-from typing import List
+from typing import List, Dict
 
 ########################################################################
 # QMGeneric
 # QMValue
 ########################################################################
+
+
 
 
 class QMValue:
@@ -14,21 +16,17 @@ class QMValue:
 
     def __init__(
         self,
-        key,
-        value,
-        visible=None,
-        derived_from=None,
-        flag=None,
-        tooltip=None
+        metrics_definition: Dict,
+        value
     ):
         # Required
-        self.key = key
+        self.key = metrics_definition['key']
         self.value = value
         # Optional
-        self.visible = visible
-        self.derived_from = derived_from
-        self.flag = flag
-        self.tooltip = tooltip
+        self.visible = metrics_definition.get("visible", None)
+        self.flag = metrics_definition.get("flag", None)
+        self.derived_from = metrics_definition.get("derived_from", None)
+        self.tooltip = metrics_definition.get("tooltip", None)
 
     def to_dict(self):
         return {k: v for (k, v) in self.__dict__.items() if v != None}
