@@ -7,12 +7,10 @@
 * Some refactoring to better deal with potential additions to the QualityMetric item schema
 * Allow definition of additional metrics that can be calculated from extracted metrics
 
-
 0.0.14
 =====
 
 * Fix typos
-
 
 0.0.13
 =====
