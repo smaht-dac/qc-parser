@@ -166,6 +166,7 @@ picard_CollectAlignmentSummaryMetrics_metrics = {
         "tooltip": "The number of insertion and deletion events per 100 aligned bases",
         "derived_from": "picard_collect_alignment_summary_metrics:pf_indel_rate",
         "type": float,
+        "visible": True,
     },
     "MEAN_READ_LENGTH": {
         "key": "Mean Read Length [Picard]",
@@ -209,14 +210,14 @@ picard_CollectInsertSizeMetrics_metrics = {
 picard_CollectWgsMetrics_metrics = {
     "MEAN_COVERAGE": {
         "key": "Mean Coverage (chr22) [Picard]",
-        "tooltip": "The mean coverage of the genome (approximation - only reads in chr22 have been considered)",
+        "tooltip": "The mean coverage of the genome (approximation using chr22 only)",
         "derived_from": "picard_collect_wgs_metrics:mean_coverage",
         "type": float,
         "visible": True,
     },
     "SD_COVERAGE": {
         "key": "Coverage Standard Deviation (chr22) [Picard]",
-        "tooltip": "The standard deviation for the coverage when only considering reads in chr22.",
+        "tooltip": "The standard deviation for the coverage (approximation using chr22 only)",
         "derived_from": "picard_collect_wgs_metrics:sd_coverage",
         "type": float,
         "visible": True,
@@ -232,9 +233,9 @@ bamstats_metrics = {
         "visible": True,
     },
     "Total_Number_Of_Reads": {
-        "key": "Total_Number_Of_Reads [bamstats]",
+        "key": "Total Number of Reads [bamstats]",
         "tooltip": "Total number of reads",
-        "derived_from": "bamstats:Total_Number_Of_Reads",
+        "derived_from": "bamstats:total_number_of_reads",
         "type": int,
     },
     "Number_of_Uniquely_Aligned_Reads_with_Q_>=_10": {

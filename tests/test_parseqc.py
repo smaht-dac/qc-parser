@@ -50,13 +50,13 @@ def test_samtools():
     qc_file.close()
 
     # Test postprocessed metrics
-    percentage_paired_reads = next(
+    percentage_reads_paired = next(
         item
         for item in data["qc_values"]
         if item["derived_from"]
-        == "samtools_stats_postprocessed:percentage_paired_reads"
+        == "samtools_stats_postprocessed:percentage_reads_paired"
     )
-    assert percentage_paired_reads["value"] == 99.94050974320187
+    assert percentage_reads_paired["value"] == 99.94050974320187
 
     # assert data["name"] == "BAM Quality Metrics"
     pprint.pprint(data["qc_values"])
