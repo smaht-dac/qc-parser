@@ -7,7 +7,7 @@ PICARD_COLLECT_INSERT_SIZE_METRICS = "picard_CollectInsertSizeMetrics"
 PICARD_COLLECT_WGS_METRICS = "picard_CollectWgsMetrics"
 FASTQC = "fastqc"
 NANOPLOT = "nanoplot"
-VERIFYBAMID = "verifyBamID"
+VERIFYBAMID = "verifybamid2"
 
 import sys
 from src.metrics_to_extract import metrics

@@ -179,8 +179,8 @@ def test_verifybamid():
     qc_values = f"tmp.verifybamid2.qc_values.{pv}.json"
     metrics_zip = f"tmp.verifybamid2.metrics.{pv}.zip"
     cmd = (
-        f"parse-qc -n 'verifyBamID' "
-        f"--metrics verifyBamID {metrics} "
+        f"parse-qc -n 'verifybamid2' "
+        f"--metrics verifybamid2 {metrics} "
         f"--output-zip {metrics_zip} "
         f"--output-json {qc_values}"
     )
@@ -193,7 +193,7 @@ def test_verifybamid():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert data["qc_values"][0]["key"] == "Estimate of contamination [VerifyBamID]"
+    assert data["qc_values"][0]["key"] == "Estimate of Contamination [VerifyBamID2]"
     assert data["qc_values"][0]["value"] == 0.185126
     assert len(data["qc_values"]) == 1
 

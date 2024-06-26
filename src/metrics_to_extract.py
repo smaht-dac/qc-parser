@@ -708,7 +708,7 @@ nanoplot_metrics = {
 
 verifybamid_metrics = {
     "FREEMIX(Alpha)": {
-        "key": "Estimate of contamination [VerifyBamID]",
+        "key": "Estimate of Contamination [VerifyBamID2]",
         "tooltip": "Sequence-only estimate of contamination (0-1 scale)",
         "derived_from": "verifybamid:freemix_alpha",
         "type": float,
