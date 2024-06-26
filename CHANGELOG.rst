@@ -1,7 +1,7 @@
 0.2.0
 =====
 
-* Add support for VerifyBamID
+* Add support for VerifyBamID2
 
 0.1.0
 =====
