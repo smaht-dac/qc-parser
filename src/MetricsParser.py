@@ -7,6 +7,7 @@ PICARD_COLLECT_INSERT_SIZE_METRICS = "picard_CollectInsertSizeMetrics"
 PICARD_COLLECT_WGS_METRICS = "picard_CollectWgsMetrics"
 FASTQC = "fastqc"
 NANOPLOT = "nanoplot"
+VERIFYBAMID = "verifyBamID"
 
 import sys
 from src.metrics_to_extract import metrics
@@ -45,6 +46,8 @@ class Parser:
             return self.parse_fastqc()
         elif self.tool == NANOPLOT:
             return self.parse_nanoplot()
+        elif self.tool == VERIFYBAMID:
+            return self.parse_verifybamid()
         else:
             sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
 
@@ -105,6 +108,18 @@ class Parser:
                 value = rnaseqc_results[field]
                 if field in metrics[RNASEQC]:
                     m = metrics[RNASEQC][field]
+                    value_cast = safe_cast(value, m["type"])
+                    qmv = QMValue(m, value_cast)
+                    qm_values.append(qmv)
+        return qm_values
+    
+    def parse_verifybamid(self) -> List[QMValue]:
+        qm_values = []
+        with open(self.path) as fi:
+            for line in fi:
+                field, value = line.rstrip().split(":", maxsplit=1)
+                if field in metrics[VERIFYBAMID]:
+                    m = metrics[VERIFYBAMID][field]
                     value_cast = safe_cast(value, m["type"])
                     qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)

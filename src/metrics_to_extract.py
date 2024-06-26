@@ -7,6 +7,7 @@ from src.MetricsParser import (
     PICARD_COLLECT_WGS_METRICS,
     FASTQC,
     NANOPLOT,
+    VERIFYBAMID,
 )
 
 
@@ -705,6 +706,17 @@ nanoplot_metrics = {
     },
 }
 
+verifybamid_metrics = {
+    "FREEMIX(Alpha)": {
+        "key": "Estimate of contamination [VerifyBamID]",
+        "tooltip": "Sequence-only estimate of contamination (0-1 scale)",
+        "derived_from": "verifybamid:freemix_alpha",
+        "type": float,
+    },
+}
+
+
+
 
 metrics = {
     SAMTOOLS_STATS: samtools_stats_metrics,
@@ -715,4 +727,5 @@ metrics = {
     PICARD_COLLECT_WGS_METRICS: picard_CollectWgsMetrics_metrics,
     FASTQC: fastqc_metrics,
     NANOPLOT: nanoplot_metrics,
+    VERIFYBAMID: verifybamid_metrics, 
 }
