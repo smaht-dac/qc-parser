@@ -173,6 +173,33 @@ def test_nanoplot():
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
 
+def test_verifybamid():
+    pv = platform.python_version()
+    metrics = "./tests/data/verifybamid2.out"
+    qc_values = f"tmp.verifybamid2.qc_values.{pv}.json"
+    metrics_zip = f"tmp.verifybamid2.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'verifybamid2' "
+        f"--metrics verifybamid2 {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == "Estimate of Contamination [VerifyBamID2]"
+    assert data["qc_values"][0]["value"] == 0.185126
+    assert len(data["qc_values"]) == 1
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
 def test_rnaseqc():
     pv = platform.python_version()
     metrics = "./tests/data/RNA-SeQC.txt"
