@@ -1,3 +1,8 @@
+0.2.1
+=====
+
+* Updated some keys and tooltips for metrics to extract
+
 0.2.0
 =====
 
