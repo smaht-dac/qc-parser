@@ -164,9 +164,9 @@ def test_nanoplot():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert data["qc_values"][0]["key"] == "Mean Read Length"
+    assert data["qc_values"][0]["key"] == "Mean Read Length [NanoPlot]"
     assert data["qc_values"][0]["value"] == 59364.0
-    assert data["qc_values"][11]["key"] == "Reads >Q12"
+    assert data["qc_values"][11]["key"] == "Reads >Q12 [NanoPlot]"
     assert data["qc_values"][11]["value"] == 86.8
     assert len(data["qc_values"]) == 13
 
@@ -220,9 +220,9 @@ def test_rnaseqc():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert data["qc_values"][0]["key"] == "Mapping Rate"
+    assert data["qc_values"][0]["key"] == "Mapping Rate [RNA-SeQC]"
     assert data["qc_values"][0]["value"] == 0.937137
-    assert data["qc_values"][16]["key"] == "Alternative Alignments"
+    assert data["qc_values"][16]["key"] == "Alternative Alignments [RNA-SeQC]"
     assert data["qc_values"][16]["value"] == 52179522
     assert len(data["qc_values"]) == 46
 
