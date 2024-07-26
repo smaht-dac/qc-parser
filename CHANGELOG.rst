@@ -1,3 +1,8 @@
+0.3.0
+=====
+
+* Add support for Kraken2
+
 0.2.1
 =====
 
