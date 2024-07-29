@@ -723,6 +723,18 @@ kraken2_metrics = {
         "derived_from": "kraken2:taxonomic_id_9606",
         "type": float,
     },
+    2: { # NCBI taxonomic ID number
+        "key": "Percentage of reads classified as Bacteria [Kraken2]",
+        "tooltip": "Percentage of reads classified as Bacteria",
+        "derived_from": "kraken2:taxonomic_id_2",
+        "type": float,
+    },
+    10239: { # NCBI taxonomic ID number
+        "key": "Percentage of reads classified as Viruses [Kraken2]",
+        "tooltip": "Percentage of reads classified as Viruses",
+        "derived_from": "kraken2:taxonomic_id_10239",
+        "type": float,
+    },
 }
 
 

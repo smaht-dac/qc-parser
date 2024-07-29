@@ -222,7 +222,11 @@ def test_kraken():
 
     assert data["qc_values"][0]["derived_from"] == "kraken2:taxonomic_id_9606"
     assert data["qc_values"][0]["value"] == 99.66
-    assert len(data["qc_values"]) == 1
+    assert data["qc_values"][1]["derived_from"] == "kraken2:taxonomic_id_2"
+    assert data["qc_values"][1]["value"] == 0.00
+    assert data["qc_values"][2]["derived_from"] == "kraken2:taxonomic_id_10239"
+    assert data["qc_values"][2]["value"] == 0.00
+    assert len(data["qc_values"]) == 3
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 

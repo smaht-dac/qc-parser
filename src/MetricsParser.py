@@ -134,8 +134,8 @@ class Parser:
             tax_ids_to_extract = [
                 #0, # unclassified
                 9606, # Homo Sapiens
-                #2, # Bacteria
-                #10239 # Viruses
+                2, # Bacteria
+                10239 # Viruses
             ]
             for line in fi:
                 values = line.rstrip().split("\t")
