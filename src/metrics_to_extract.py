@@ -718,7 +718,7 @@ verifybamid_metrics = {
 
 kraken2_metrics = {
     9606: { # NCBI taxonomic ID number
-        "key": "Percentage of reads classified as Homo Sapiens [Kraken2]",
+        "key": "Percentage Human Sequences [Kraken2]",
         "tooltip": "Percentage of reads classified as Homo Sapiens",
         "derived_from": "kraken2:taxonomic_id_9606",
         "type": float,
