@@ -724,7 +724,7 @@ kraken2_metrics = {
         "type": float,
     },
     2: { # NCBI taxonomic ID number
-        "key": "Percentage of reads classified as Bacteria [Kraken2]",
+        "key": "Percentage Bacterial Sequences [Kraken2]",
         "tooltip": "Percentage of reads classified as Bacteria",
         "derived_from": "kraken2:taxonomic_id_2",
         "type": float,
