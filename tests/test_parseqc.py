@@ -200,6 +200,37 @@ def test_verifybamid():
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
 
+def test_kraken():
+    pv = platform.python_version()
+    metrics = "./tests/data/kraken2_report.txt"
+    qc_values = f"tmp.kraken2.qc_values.{pv}.json"
+    metrics_zip = f"tmp.kraken2.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'kraken2' "
+        f"--metrics kraken2 {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["derived_from"] == "kraken2:taxonomic_id_9606"
+    assert data["qc_values"][0]["value"] == 99.66
+    assert data["qc_values"][1]["derived_from"] == "kraken2:taxonomic_id_2"
+    assert data["qc_values"][1]["value"] == 0.00
+    assert data["qc_values"][2]["derived_from"] == "kraken2:taxonomic_id_10239"
+    assert data["qc_values"][2]["value"] == 0.00
+    assert len(data["qc_values"]) == 3
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
 def test_rnaseqc():
     pv = platform.python_version()
     metrics = "./tests/data/RNA-SeQC.txt"

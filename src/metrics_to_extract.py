@@ -8,6 +8,7 @@ from src.MetricsParser import (
     FASTQC,
     NANOPLOT,
     VERIFYBAMID,
+    KRAKEN2
 )
 
 
@@ -715,6 +716,27 @@ verifybamid_metrics = {
     },
 }
 
+kraken2_metrics = {
+    9606: { # NCBI taxonomic ID number
+        "key": "Percentage Human Sequences [Kraken2]",
+        "tooltip": "Percentage of reads classified as Homo Sapiens",
+        "derived_from": "kraken2:taxonomic_id_9606",
+        "type": float,
+    },
+    2: { # NCBI taxonomic ID number
+        "key": "Percentage Bacterial Sequences [Kraken2]",
+        "tooltip": "Percentage of reads classified as Bacteria",
+        "derived_from": "kraken2:taxonomic_id_2",
+        "type": float,
+    },
+    10239: { # NCBI taxonomic ID number
+        "key": "Percentage Viral Sequences [Kraken2]",
+        "tooltip": "Percentage of reads classified as Viruses",
+        "derived_from": "kraken2:taxonomic_id_10239",
+        "type": float,
+    },
+}
+
 
 
 
@@ -728,4 +750,5 @@ metrics = {
     FASTQC: fastqc_metrics,
     NANOPLOT: nanoplot_metrics,
     VERIFYBAMID: verifybamid_metrics, 
+    KRAKEN2: kraken2_metrics
 }

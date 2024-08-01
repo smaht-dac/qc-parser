@@ -8,6 +8,7 @@ PICARD_COLLECT_WGS_METRICS = "picard_CollectWgsMetrics"
 FASTQC = "fastqc"
 NANOPLOT = "nanoplot"
 VERIFYBAMID = "verifybamid2"
+KRAKEN2 = "kraken2"
 
 import sys
 from src.metrics_to_extract import metrics
@@ -48,6 +49,8 @@ class Parser:
             return self.parse_nanoplot()
         elif self.tool == VERIFYBAMID:
             return self.parse_verifybamid()
+        elif self.tool == KRAKEN2:
+            return self.parse_kraken2()
         else:
             sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
 
@@ -123,6 +126,27 @@ class Parser:
                     value_cast = safe_cast(value, m["type"])
                     qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
+        return qm_values
+    
+    def parse_kraken2(self) -> List[QMValue]:
+        qm_values = []
+        with open(self.path) as fi:
+            tax_ids_to_extract = [
+                #0, # unclassified
+                9606, # Homo Sapiens
+                2, # Bacteria
+                10239 # Viruses
+            ]
+            for line in fi:
+                values = line.rstrip().split("\t")
+                reads_percent = values[0]
+                tax_id = int(values[4])
+                if tax_id in tax_ids_to_extract:
+                    m = metrics[KRAKEN2][tax_id]
+                    value_cast = safe_cast(reads_percent, m["type"])
+                    qmv = QMValue(m, value_cast)
+                    qm_values.append(qmv)
+        
         return qm_values
 
     def parse_nanoplot(self) -> List[QMValue]:
