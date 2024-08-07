@@ -137,6 +137,7 @@ class Parser:
                 2, # Bacteria
                 10239 # Viruses
             ]
+            extracted_tax_ids = [] # Keep track of those that were actually in the report
             for line in fi:
                 values = line.rstrip().split("\t")
                 reads_percent = values[0]
@@ -146,6 +147,12 @@ class Parser:
                     value_cast = safe_cast(reads_percent, m["type"])
                     qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
+                    extracted_tax_ids.append(tax_id)
+            missing_tax_ids = list(set(tax_ids_to_extract) - set(extracted_tax_ids))
+            for tax_id in missing_tax_ids:
+                m = metrics[KRAKEN2][tax_id]
+                qmv = QMValue(m, 0.0)
+                qm_values.append(qmv)
         
         return qm_values
 

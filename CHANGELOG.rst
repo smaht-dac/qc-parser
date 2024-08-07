@@ -1,6 +1,12 @@
 0.3.0
 =====
 
+* Ensure all needed values are extracted from the Kraken report, set defaults when not present
+
+
+0.3.0
+=====
+
 * Add support for Kraken2
 
 0.2.1
