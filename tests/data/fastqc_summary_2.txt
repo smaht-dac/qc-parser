@@ -10,4 +10,4 @@ PASS	Sequence Duplication Levels	1418708.180681.227CTHLT3.1.1.fastq.gz
 PASS	Overrepresented sequences	1418708.180681.227CTHLT3.1.1.fastq.gz
 PASS	Adapter Content	1418708.180681.227CTHLT3.1.1.fastq.gz
 13476802	Total Sequences	.
-151	Sequence Length	.
+10-150	Sequence Length	.

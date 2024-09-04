@@ -622,7 +622,7 @@ fastqc_metrics = {
         "key": "Sequence Length [FastQC]",
         "tooltip": "Length of sequences",
         "derived_from": "fastqc:sequence_length",
-        "type": int,
+        "type": [int, str],
     },
 }
 

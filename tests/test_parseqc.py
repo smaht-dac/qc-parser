@@ -24,7 +24,45 @@ def test_fastqc():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert len(data["qc_values"]) == 11
+    assert len(data["qc_values"]) == 13
+
+    seq_len = next(
+        item
+        for item in data["qc_values"]
+        if item["derived_from"] == "fastqc:sequence_length"
+    )
+    assert seq_len["value"] == 151
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
+def test_fastqc_2():
+    pv = platform.python_version()
+    fastqc_stats = "./tests/data/fastqc_summary_2.txt"
+    qc_values = f"tmp.fastqc2.qc_values.{pv}.json"
+    metrics_zip = f"tmp.fastqc2.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'FastQC2' "
+        f"--metrics fastqc {fastqc_stats} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert len(data["qc_values"]) == 13
+
+    seq_len = next(
+        item
+        for item in data["qc_values"]
+        if item["derived_from"] == "fastqc:sequence_length"
+    )
+    assert seq_len["value"] == '10-150'
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
