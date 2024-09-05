@@ -1,4 +1,10 @@
-0.3.0
+0.4.0
+=====
+
+* Support the case that an extracted metric can have multiple types. Example: The Sequence Length reported by FastQC can either be `151` (`int`) or `10-151` (`str`).
+
+
+0.3.1
 =====
 
 * Ensure all needed values are extracted from the Kraken report, set defaults when not present
