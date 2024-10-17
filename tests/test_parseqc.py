@@ -296,3 +296,30 @@ def test_rnaseqc():
     assert len(data["qc_values"]) == 46
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
+def test_mosdepth():
+    pv = platform.python_version()
+    metrics = "./tests/data/mosdepth.summary.txt"
+    qc_values = f"tmp.mosdepth.qc_values.{pv}.json"
+    metrics_zip = f"tmp.mosdepth.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'mosdepth' "
+        f"--metrics mosdepth {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == "Estimated Average Coverage [mosdepth]"
+    assert data["qc_values"][0]["value"] == 58.57
+    assert len(data["qc_values"]) == 1
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")

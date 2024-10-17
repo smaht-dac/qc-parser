@@ -9,6 +9,7 @@ FASTQC = "fastqc"
 NANOPLOT = "nanoplot"
 VERIFYBAMID = "verifybamid2"
 KRAKEN2 = "kraken2"
+MOSDEPTH = "mosdepth"
 
 import sys
 from src.metrics_to_extract import metrics
@@ -51,6 +52,8 @@ class Parser:
             return self.parse_verifybamid()
         elif self.tool == KRAKEN2:
             return self.parse_kraken2()
+        elif self.tool == MOSDEPTH:
+            return self.parse_mosdepth()
         else:
             sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
 
@@ -261,4 +264,16 @@ class Parser:
                     continue
                 qmv = QMValue(m, value_cast)
                 qm_values.append(qmv)
+        return qm_values
+
+    def parse_mosdepth(self) -> List[QMValue]:
+        qm_values = []
+        with open(self.path) as fi:
+            for line in fi:
+                field, _, _, value, _, _ = line.rstrip().split()
+                if field in metrics[MOSDEPTH]:
+                    m = metrics[MOSDEPTH][field]
+                    value_cast = safe_cast(value, m["type"])
+                    qmv = QMValue(m, value_cast)
+                    qm_values.append(qmv)
         return qm_values
