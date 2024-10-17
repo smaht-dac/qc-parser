@@ -42,6 +42,7 @@ The currently supported QC tools are:
 - nanoplot (NanoPlot)
 - verifybamid2 (VerifyBamID2)
 - kraken2 (Kraken2)
+- mosdepth (mosdepth)
 
 ## Development
 

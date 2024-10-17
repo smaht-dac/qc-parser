@@ -8,7 +8,8 @@ from src.MetricsParser import (
     FASTQC,
     NANOPLOT,
     VERIFYBAMID,
-    KRAKEN2
+    KRAKEN2,
+    MOSDEPTH
 )
 
 
@@ -525,8 +526,8 @@ rnaseqc_metrics = {
         "visible": True,
     },
     "Total Reads": {
-        "key": "Total Reads [RNA-SeQC]",
-        "tooltip": "The number of total reads",
+        "key": "Total Alignments [RNA-SeQC]",
+        "tooltip": "The number of total alignments, including secondary alignments or platform/vendor QC failing reads",
         "derived_from": "rnaseqc:total_reads",
         "type": int,
         "visible": True,
@@ -737,6 +738,14 @@ kraken2_metrics = {
     },
 }
 
+mosdepth_metrics = {
+    "total": {
+        "key": "Estimated Average Coverage [mosdepth]",
+        "tooltip": "Estimated average coverage",
+        "derived_from": "mosdepth:total",
+        "type": float,
+    },
+}
 
 
 
@@ -750,5 +759,6 @@ metrics = {
     FASTQC: fastqc_metrics,
     NANOPLOT: nanoplot_metrics,
     VERIFYBAMID: verifybamid_metrics, 
-    KRAKEN2: kraken2_metrics
+    KRAKEN2: kraken2_metrics,
+    MOSDEPTH: mosdepth_metrics
 }

@@ -1,3 +1,9 @@
+0.5.0
+=====
+
+* Add support for mosdepth
+
+
 0.4.0
 =====
 
@@ -15,15 +21,18 @@
 
 * Add support for Kraken2
 
+
 0.2.1
 =====
 
 * Updated some keys and tooltips for metrics to extract
 
+
 0.2.0
 =====
 
 * Add support for VerifyBamID2
+
 
 0.1.0
 =====
@@ -34,25 +43,30 @@
 * Some refactoring to better deal with potential additions to the QualityMetric item schema
 * Allow definition of additional metrics that can be calculated from extracted metrics
 
+
 0.0.14
 =====
 
 * Fix typos
+
 
 0.0.13
 =====
 
 * Enable RNA-SeQC
 
+
 0.0.7
 =====
 
 * Minor changes to bamstats parser
 
+
 0.0.3
 =====
 
 * Add FastQC
+
 
 0.0.2
 =====
@@ -60,6 +74,7 @@
 * Add RNA-SeqQC 
 * Safely cast metrics before adding them to result. If cast fails, the metric will be omitted
 * Minor refactoring
+
 
 0.0.1
 =====
