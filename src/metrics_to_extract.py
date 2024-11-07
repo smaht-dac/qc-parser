@@ -9,7 +9,8 @@ from src.MetricsParser import (
     NANOPLOT,
     VERIFYBAMID,
     KRAKEN2,
-    MOSDEPTH
+    MOSDEPTH,
+    SOMALIER
 )
 
 
@@ -747,6 +748,15 @@ mosdepth_metrics = {
     },
 }
 
+somalier_metrics = {
+    "relatedness": {
+        "key": "Identity Check [Somalier]",
+        "tooltip": "Identity check results based on estimated relatedness. Marked as FAILED if any sample shows no relatedness",
+        "derived_from": "somalier:relatedness",
+        "type": str,
+    }
+}
+
 
 
 metrics = {
@@ -760,5 +770,6 @@ metrics = {
     NANOPLOT: nanoplot_metrics,
     VERIFYBAMID: verifybamid_metrics, 
     KRAKEN2: kraken2_metrics,
-    MOSDEPTH: mosdepth_metrics
+    MOSDEPTH: mosdepth_metrics,
+    SOMALIER: somalier_metrics
 }
