@@ -43,6 +43,7 @@ The currently supported QC tools are:
 - verifybamid2 (VerifyBamID2)
 - kraken2 (Kraken2)
 - mosdepth (mosdepth)
+- somalier (Somalier)
 
 ## Development
 
