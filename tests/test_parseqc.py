@@ -323,3 +323,53 @@ def test_mosdepth():
     assert len(data["qc_values"]) == 1
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
+def test_somalier():
+    pv = platform.python_version()
+    metrics_PASSED = "./tests/data/somalier_PASSED.tsv"
+    metrics_FAILED = "./tests/data/somalier_FAILED.tsv"
+    qc_values = f"tmp.somalier.qc_values.{pv}.json"
+    metrics_zip = f"tmp.somalier.metrics.{pv}.zip"
+    # PASS
+    cmd = (
+        f"parse-qc -n 'somalier' "
+        f"--metrics somalier {metrics_PASSED} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == "Identity Check [Somalier]"
+    assert data["qc_values"][0]["value"] == 'PASSED'
+    assert len(data["qc_values"]) == 1
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+    # FAIL
+    cmd = (
+        f"parse-qc -n 'somalier' "
+        f"--metrics somalier {metrics_FAILED} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == "Identity Check [Somalier]"
+    assert data["qc_values"][0]["value"] == 'FAILED'
+    assert len(data["qc_values"]) == 1
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")

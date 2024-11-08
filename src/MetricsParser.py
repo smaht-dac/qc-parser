@@ -10,6 +10,7 @@ NANOPLOT = "nanoplot"
 VERIFYBAMID = "verifybamid2"
 KRAKEN2 = "kraken2"
 MOSDEPTH = "mosdepth"
+SOMALIER = "somalier"
 
 import sys
 from src.metrics_to_extract import metrics
@@ -54,6 +55,8 @@ class Parser:
             return self.parse_kraken2()
         elif self.tool == MOSDEPTH:
             return self.parse_mosdepth()
+        elif self.tool == SOMALIER:
+            return self.parse_somalier()
         else:
             sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
 
@@ -276,4 +279,21 @@ class Parser:
                     value_cast = safe_cast(value, m["type"])
                     qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
+        return qm_values
+
+    def parse_somalier(self, threshold=0.9) -> List[QMValue]:
+        qm_values, check_value = [], None
+        with open(self.path) as fi:
+            for line in fi:
+                if line.startswith('#'):
+                    continue
+                relatedness = float(line.rstrip().split('\t')[2])
+                if relatedness < threshold:
+                    check_value = 'FAILED'
+                    break
+            if check_value is None:
+                check_value = 'PASSED'
+            m = metrics[SOMALIER]['relatedness']
+            qmv = QMValue(m, check_value)
+            qm_values.append(qmv)
         return qm_values
