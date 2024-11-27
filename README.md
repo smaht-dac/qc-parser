@@ -44,6 +44,7 @@ The currently supported QC tools are:
 - kraken2 (Kraken2)
 - mosdepth (mosdepth)
 - somalier (Somalier)
+- tissue_classifier (internal tissue classification tool for RNA-Seq data)
 
 ## Development
 
