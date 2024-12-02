@@ -324,6 +324,7 @@ def test_mosdepth():
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
+
 def test_somalier():
     pv = platform.python_version()
     metrics_PASSED = "./tests/data/somalier_PASSED.tsv"
@@ -371,5 +372,34 @@ def test_somalier():
     assert data["qc_values"][0]["key"] == "Identity Check [Somalier]"
     assert data["qc_values"][0]["value"] == 'FAILED'
     assert len(data["qc_values"]) == 1
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
+def test_tissue_classifier():
+    pv = platform.python_version()
+    metrics = "./tests/data/tissue_classifier_output.txt"
+    qc_values = f"tmp.tissue_classifier.qc_values.{pv}.json"
+    metrics_zip = f"tmp.tissue_classifier.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'tissue_classifier' "
+        f"--metrics tissue_classifier {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == "Predicted Tissue 1 [Tissue Classifier]"
+    assert data["qc_values"][0]["value"] == "Brain"
+    assert data["qc_values"][3]["key"] == "Probability of Predicted Tissue 2 [Tissue Classifier]"
+    assert data["qc_values"][3]["value"] == 0.008
+    assert len(data["qc_values"]) == 6
 
     os.system(f"rm -f {qc_values} {metrics_zip}")

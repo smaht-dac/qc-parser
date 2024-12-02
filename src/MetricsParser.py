@@ -11,6 +11,7 @@ VERIFYBAMID = "verifybamid2"
 KRAKEN2 = "kraken2"
 MOSDEPTH = "mosdepth"
 SOMALIER = "somalier"
+TISSUE_CLASSIFIER = "tissue_classifier"
 
 import sys
 from src.metrics_to_extract import metrics
@@ -57,6 +58,8 @@ class Parser:
             return self.parse_mosdepth()
         elif self.tool == SOMALIER:
             return self.parse_somalier()
+        elif self.tool == TISSUE_CLASSIFIER:
+            return self.parse_tissue_classifier()
         else:
             sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
 
@@ -296,4 +299,16 @@ class Parser:
             m = metrics[SOMALIER]['relatedness']
             qmv = QMValue(m, check_value)
             qm_values.append(qmv)
+        return qm_values
+    
+    def parse_tissue_classifier(self) -> List[QMValue]:
+        qm_values = []
+        with open(self.path) as fi:
+            for line in fi:
+                field, value = line.rstrip().split("\t")
+                if field in metrics[TISSUE_CLASSIFIER]:
+                    m = metrics[TISSUE_CLASSIFIER][field]
+                    value_cast = safe_cast(value, m["type"])
+                    qmv = QMValue(m, value_cast)
+                    qm_values.append(qmv)
         return qm_values

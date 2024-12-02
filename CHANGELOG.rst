@@ -1,3 +1,9 @@
+0.7.0
+=====
+
+* Add tissue classifier
+
+
 0.6.0
 =====
 

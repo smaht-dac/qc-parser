@@ -1,0 +1,60 @@
+Predicted tissue 1	Brain
+Probability predicted tissue 1	0.976
+Predicted tissue 2	Adipose Tissue
+Probability predicted tissue 2	0.008
+Predicted tissue 3	Ovary
+Probability predicted tissue 3	0.008
+Predicted tissue 4	Pituitary
+Probability predicted tissue 4	0.008
+Predicted tissue 5	Adrenal Gland
+Probability predicted tissue 5	0.0
+Predicted tissue 6	Bladder
+Probability predicted tissue 6	0.0
+Predicted tissue 7	Blood
+Probability predicted tissue 7	0.0
+Predicted tissue 8	Blood Vessel
+Probability predicted tissue 8	0.0
+Predicted tissue 9	Breast
+Probability predicted tissue 9	0.0
+Predicted tissue 10	Cervix Uteri
+Probability predicted tissue 10	0.0
+Predicted tissue 11	Colon
+Probability predicted tissue 11	0.0
+Predicted tissue 12	Esophagus
+Probability predicted tissue 12	0.0
+Predicted tissue 13	Fallopian Tube
+Probability predicted tissue 13	0.0
+Predicted tissue 14	Heart
+Probability predicted tissue 14	0.0
+Predicted tissue 15	Kidney
+Probability predicted tissue 15	0.0
+Predicted tissue 16	Liver
+Probability predicted tissue 16	0.0
+Predicted tissue 17	Lung
+Probability predicted tissue 17	0.0
+Predicted tissue 18	Muscle
+Probability predicted tissue 18	0.0
+Predicted tissue 19	Nerve
+Probability predicted tissue 19	0.0
+Predicted tissue 20	Pancreas
+Probability predicted tissue 20	0.0
+Predicted tissue 21	Prostate
+Probability predicted tissue 21	0.0
+Predicted tissue 22	Salivary Gland
+Probability predicted tissue 22	0.0
+Predicted tissue 23	Skin
+Probability predicted tissue 23	0.0
+Predicted tissue 24	Small Intestine
+Probability predicted tissue 24	0.0
+Predicted tissue 25	Spleen
+Probability predicted tissue 25	0.0
+Predicted tissue 26	Stomach
+Probability predicted tissue 26	0.0
+Predicted tissue 27	Testis
+Probability predicted tissue 27	0.0
+Predicted tissue 28	Thyroid
+Probability predicted tissue 28	0.0
+Predicted tissue 29	Uterus
+Probability predicted tissue 29	0.0
+Predicted tissue 30	Vagina
+Probability predicted tissue 30	0.0

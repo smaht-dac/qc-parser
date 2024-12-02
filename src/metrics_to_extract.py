@@ -10,7 +10,8 @@ from src.MetricsParser import (
     VERIFYBAMID,
     KRAKEN2,
     MOSDEPTH,
-    SOMALIER
+    SOMALIER,
+    TISSUE_CLASSIFIER
 )
 
 
@@ -757,6 +758,45 @@ somalier_metrics = {
     }
 }
 
+tissue_classifier_metrics = {
+    "Predicted tissue 1": {
+        "key": "Predicted Tissue 1 [Tissue Classifier]",
+        "tooltip": "Predicted tissue from gene expression TPM values (highest probability)",
+        "derived_from": "tissue_classifier:predicted_tissue_1",
+        "type": str,
+    },
+    "Probability predicted tissue 1": {
+         "key": "Probability of Predicted Tissue 1 [Tissue Classifier]",
+        "tooltip": "Probability of predicted tissue 1",
+        "derived_from": "tissue_classifier:probability_predicted_tissue_1",
+        "type": float,
+    },
+    "Predicted tissue 2": {
+        "key": "Predicted Tissue 2 [Tissue Classifier]",
+        "tooltip": "Predicted tissue from gene expression TPM values (2nd highest probability)",
+        "derived_from": "tissue_classifier:predicted_tissue_2",
+        "type": str,
+    },
+    "Probability predicted tissue 2": {
+         "key": "Probability of Predicted Tissue 2 [Tissue Classifier]",
+        "tooltip": "Probability of predicted tissue 2",
+        "derived_from": "tissue_classifier:probability_predicted_tissue_2",
+        "type": float,
+    },
+     "Predicted tissue 3": {
+        "key": "Predicted Tissue 3 [Tissue Classifier]",
+        "tooltip": "Predicted tissue from gene expression TPM values (3rd highest probability)",
+        "derived_from": "tissue_classifier:predicted_tissue_3",
+        "type": str,
+    },
+    "Probability predicted tissue 3": {
+         "key": "Probability of Predicted Tissue 3 [Tissue Classifier]",
+        "tooltip": "Probability of predicted tissue 3",
+        "derived_from": "tissue_classifier:probability_predicted_tissue_3",
+        "type": float,
+    },
+}
+
 
 
 metrics = {
@@ -771,5 +811,6 @@ metrics = {
     VERIFYBAMID: verifybamid_metrics, 
     KRAKEN2: kraken2_metrics,
     MOSDEPTH: mosdepth_metrics,
-    SOMALIER: somalier_metrics
+    SOMALIER: somalier_metrics,
+    TISSUE_CLASSIFIER: tissue_classifier_metrics
 }
