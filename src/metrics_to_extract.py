@@ -761,7 +761,7 @@ somalier_metrics = {
 tissue_classifier_metrics = {
     "Predicted tissue 1": {
         "key": "Predicted Tissue 1 [Tissue Classifier]",
-        "tooltip": "Predicted Tissue from gene expression TPM values (highest probability)",
+        "tooltip": "Predicted tissue from gene expression TPM values (highest probability)",
         "derived_from": "tissue_classifier:predicted_tissue_1",
         "type": str,
     },
