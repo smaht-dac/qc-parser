@@ -773,7 +773,7 @@ tissue_classifier_metrics = {
     },
     "Predicted tissue 2": {
         "key": "Predicted Tissue 2 [Tissue Classifier]",
-        "tooltip": "Predicted Tissue from gene expression TPM values (2nd highest probability)",
+        "tooltip": "Predicted tissue from gene expression TPM values (2nd highest probability)",
         "derived_from": "tissue_classifier:predicted_tissue_2",
         "type": str,
     },
