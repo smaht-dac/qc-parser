@@ -1,0 +1,137 @@
+{
+    "_comment": "Created by pbcopper v2.6.0",
+    "attributes": [],
+    "dataset_uuids": [],
+    "id": "classification_summary",
+    "plotGroups": [],
+    "tables": [
+        {
+            "columns": [
+                {
+                    "header": "Sample Name",
+                    "id": "sample_name",
+                    "values": [
+                        "BioSample_1"
+                    ]
+                },
+                {
+                    "header": "Total Unique Genes",
+                    "id": "total_unique_genes",
+                    "values": [
+                        26418
+                    ]
+                },
+                {
+                    "header": "Total Unique Genes, known genes only",
+                    "id": "total_unique_genes_known",
+                    "values": [
+                        18204
+                    ]
+                },
+                {
+                    "header": "Total Unique Transcripts",
+                    "id": "total_unique_transcripts",
+                    "values": [
+                        334454
+                    ]
+                },
+                {
+                    "header": "Total Unique Transcripts, known transcripts only",
+                    "id": "total_unique_transcripts_known",
+                    "values": [
+                        55585
+                    ]
+                },
+                {
+                    "header": "Total Unique Transcripts, novel transcripts > 1 TPM",
+                    "id": "total_unique_transcripts_novel_greater_1tpm",
+                    "values": [
+                        12599
+                    ]
+                },
+                {
+                    "header": "FLNC Reads Mapped to Genome",
+                    "id": "flnc_mapped_genome",
+                    "values": [
+                        24985387
+                    ]
+                },
+                {
+                    "header": "FLNC Reads Confidently Mapped to Transcriptome",
+                    "id": "flnc_mapped_transcriptome",
+                    "values": [
+                        24924079
+                    ]
+                },
+                {
+                    "header": "FLNC Reads Confidently Mapped to Transcriptome, excluding ribomito",
+                    "id": "flnc_mapped_transcriptome_excluding_ribomito",
+                    "values": [
+                        24059299
+                    ]
+                },
+                {
+                    "header": "Transcripts classified as Full-splice Matches (FSM)",
+                    "id": "transcripts_fsm",
+                    "values": [
+                        125921
+                    ]
+                },
+                {
+                    "header": "Transcripts classified as Incomplete-splice Matches (ISM)",
+                    "id": "transcripts_ism",
+                    "values": [
+                        192547
+                    ]
+                },
+                {
+                    "header": "Transcripts classified as Novel In Catalog (NIC)",
+                    "id": "transcripts_nic",
+                    "values": [
+                        139198
+                    ]
+                },
+                {
+                    "header": "Transcripts classified as Novel Not In Catalog (NNC)",
+                    "id": "transcripts_nnc",
+                    "values": [
+                        124370
+                    ]
+                },
+                {
+                    "header": "Percent of reads classified as Full-splice Matches (FSM)",
+                    "id": "percent_reads_fsm",
+                    "values": [
+                        77.71
+                    ]
+                },
+                {
+                    "header": "Percent of reads classified as Incomplete-splice Matches (ISM)",
+                    "id": "percent_reads_ism",
+                    "values": [
+                        12.35
+                    ]
+                },
+                {
+                    "header": "Percent of reads classified as Novel In Catalog (NIC)",
+                    "id": "percent_reads_nic",
+                    "values": [
+                        5.63
+                    ]
+                },
+                {
+                    "header": "Percent of reads classified as Novel Not In Catalog (NNC)",
+                    "id": "percent_reads_nnc",
+                    "values": [
+                        4.07
+                    ]
+                }
+            ],
+            "id": "classification_summary_by_sample",
+            "title": ""
+        }
+    ],
+    "title": "Pigeon Classification Summary",
+    "uuid": "b536488c-7e64-43ab-977f-5f7a91ac0b00",
+    "version": "1.0.1"
+}

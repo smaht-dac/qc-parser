@@ -11,7 +11,8 @@ from src.MetricsParser import (
     KRAKEN2,
     MOSDEPTH,
     SOMALIER,
-    TISSUE_CLASSIFIER
+    TISSUE_CLASSIFIER,
+    PIGEON_FILTER_JSON
 )
 
 
@@ -766,7 +767,7 @@ tissue_classifier_metrics = {
         "type": str,
     },
     "Probability predicted tissue 1": {
-         "key": "Probability of Predicted Tissue 1 [Tissue Classifier]",
+        "key": "Probability of Predicted Tissue 1 [Tissue Classifier]",
         "tooltip": "Probability of predicted tissue 1",
         "derived_from": "tissue_classifier:probability_predicted_tissue_1",
         "type": float,
@@ -778,7 +779,7 @@ tissue_classifier_metrics = {
         "type": str,
     },
     "Probability predicted tissue 2": {
-         "key": "Probability of Predicted Tissue 2 [Tissue Classifier]",
+        "key": "Probability of Predicted Tissue 2 [Tissue Classifier]",
         "tooltip": "Probability of predicted tissue 2",
         "derived_from": "tissue_classifier:probability_predicted_tissue_2",
         "type": float,
@@ -790,14 +791,111 @@ tissue_classifier_metrics = {
         "type": str,
     },
     "Probability predicted tissue 3": {
-         "key": "Probability of Predicted Tissue 3 [Tissue Classifier]",
+        "key": "Probability of Predicted Tissue 3 [Tissue Classifier]",
         "tooltip": "Probability of predicted tissue 3",
         "derived_from": "tissue_classifier:probability_predicted_tissue_3",
         "type": float,
     },
 }
 
-
+pigeon_filter_json_metrics = {
+    "total_unique_genes": {
+        "key": "Total Genes [Pigeon]",
+        "tooltip": "Number of unique genes",
+        "derived_from": "pigeon_filter_json:total_unique_genes",
+        "type": int,
+    },
+    "total_unique_genes_known": {
+        "key": "Total Known Genes [Pigeon]",
+        "tooltip": "Number of known unique genes",
+        "derived_from": "pigeon_filter_json:total_unique_genes_known",
+        "type": int,
+    },
+    "total_unique_transcripts": {
+        "key": "Total Transcripts [Pigeon]",
+        "tooltip": "Number of unique transcripts",
+        "derived_from": "pigeon_filter_json:total_unique_transcripts",
+        "type": int,
+    },
+    "total_unique_transcripts_known": {
+        "key": "Total Known Transcripts [Pigeon]",
+        "tooltip": "Number of known unique transcripts",
+        "derived_from": "pigeon_filter_json:total_unique_transcripts_known",
+        "type": int,
+    },
+    "total_unique_transcripts_novel_greater_1tpm": {
+        "key": "Total Novel Transcripts > 1TMP [Pigeon]",
+        "tooltip": "Number of novel unique transcripts > 1 TPM",
+        "derived_from": "pigeon_filter_json:total_unique_transcripts_novel_greater_1tpm",
+        "type": int,
+    },
+    "flnc_mapped_genome": {
+        "key": "FLNC Mapped Genome [Pigeon]",
+        "tooltip": "Number of full-length non-chimeric reads mapped to genome",
+        "derived_from": "pigeon_filter_json:flnc_mapped_genome",
+        "type": int,
+    },
+    "flnc_mapped_transcriptome": {
+        "key": "FLNC Mapped Transcriptome [Pigeon]",
+        "tooltip": "Number of full-length non-chimeric reads mapped to transcriptome",
+        "derived_from": "pigeon_filter_json:flnc_mapped_transcriptome",
+        "type": int,
+    },
+    "flnc_mapped_transcriptome_excluding_ribomito": {
+        "key": "FLNC Mapped Transcriptome, NO Ribosomal-Mitochondria [Pigeon]",
+        "tooltip": "Number of full-length non-chimeric reads mapped to transcriptome, excluding ribosomal and mitochondria",
+        "derived_from": "pigeon_filter_json:flnc_mapped_transcriptome_excluding_ribomito",
+        "type": int,
+    },
+    "transcripts_fsm": {
+        "key": "Transcripts FSM [Pigeon]",
+        "tooltip": "Number of transcripts classified as full-splice matches",
+        "derived_from": "pigeon_filter_json:transcripts_fsm",
+        "type": int,
+    },
+    "transcripts_ism": {
+        "key": "Transcripts ISM [Pigeon]",
+        "tooltip": "Number of transcripts classified as incomplete-splice matches",
+        "derived_from": "pigeon_filter_json:transcripts_ism",
+        "type": int,
+    },
+    "transcripts_nic": {
+        "key": "Transcripts NIC [Pigeon]",
+        "tooltip": "Number of transcripts classified as novel in catalog",
+        "derived_from": "pigeon_filter_json:transcripts_nic",
+        "type": int,
+    },
+    "transcripts_nnc": {
+        "key": "Transcripts NNC [Pigeon]",
+        "tooltip": "Number of transcripts classified as novel NOT in catalog",
+        "derived_from": "pigeon_filter_json:transcripts_nnc",
+        "type": int,
+    },
+    "percent_reads_fsm": {
+        "key": "Reads FSM [Pigeon]",
+        "tooltip": "Percentage of reads classified as full-splice matches",
+        "derived_from": "pigeon_filter_json:percent_reads_fsm",
+        "type": float,
+    },
+    "percent_reads_ism": {
+        "key": "Reads ISM [Pigeon]",
+        "tooltip": "Percentage of reads classified as incomplete-splice matches",
+        "derived_from": "pigeon_filter_json:percent_reads_ism",
+        "type": float,
+    },
+    "percent_reads_nic": {
+        "key": "Reads NIC [Pigeon]",
+        "tooltip": "Percentage of reads classified as novel in catalog",
+        "derived_from": "pigeon_filter_json:percent_reads_nic",
+        "type": float,
+    },
+    "percent_reads_nnc": {
+        "key": "Reads NNC [Pigeon]",
+        "tooltip": "Percentage of reads classified as Novel Not In Catalog",
+        "derived_from": "pigeon_filter_json:percent_reads_nnc",
+        "type": float,
+    },
+}
 
 metrics = {
     SAMTOOLS_STATS: samtools_stats_metrics,
@@ -812,5 +910,6 @@ metrics = {
     KRAKEN2: kraken2_metrics,
     MOSDEPTH: mosdepth_metrics,
     SOMALIER: somalier_metrics,
-    TISSUE_CLASSIFIER: tissue_classifier_metrics
+    TISSUE_CLASSIFIER: tissue_classifier_metrics,
+    PIGEON_FILTER_JSON: pigeon_filter_json_metrics
 }
