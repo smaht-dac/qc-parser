@@ -60,8 +60,6 @@ def safe_cast(value, to_type):
         tested_types = ", ".join(tested_types)
         raise ValueError(f"Value {value} is not of type {tested_types}")
 
-  
-
 
 class SafeEval(ast.NodeVisitor):
 

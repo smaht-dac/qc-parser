@@ -403,3 +403,37 @@ def test_tissue_classifier():
     assert len(data["qc_values"]) == 6
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
+
+def test_pigeon_filter_json():
+    pv = platform.python_version()
+    metrics = "./tests/data/pigeon_filter.json"
+    qc_values = f"tmp.pigeon_filter.qc_values.{pv}.json"
+    metrics_zip = f"tmp.pigeon_filter.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'pigeon_filter_json' "
+        f"--metrics pigeon_filter_json {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+
+    assert data["qc_values"][0]["key"] == "Unique Genes [Pigeon]"
+    assert data["qc_values"][0]["value"] == 26418
+    assert data["qc_values"][1]["key"] == "Known Unique Genes [Pigeon]"
+    assert data["qc_values"][1]["value"] == 18204
+    assert data["qc_values"][10]["key"] == "Transcripts NIC [Pigeon]"
+    assert data["qc_values"][10]["value"] == 139198
+    assert data["qc_values"][14]["key"] == "Reads NIC [Pigeon]"
+    assert data["qc_values"][14]["value"] == 5.63
+    assert data["qc_values"][15]["key"] == "Reads NNC [Pigeon]"
+    assert data["qc_values"][15]["value"] == 4.07
+    assert len(data["qc_values"]) == 16
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")

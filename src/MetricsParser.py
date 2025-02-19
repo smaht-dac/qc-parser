@@ -12,6 +12,7 @@ KRAKEN2 = "kraken2"
 MOSDEPTH = "mosdepth"
 SOMALIER = "somalier"
 TISSUE_CLASSIFIER = "tissue_classifier"
+PIGEON_FILTER_JSON = "pigeon_filter_json"
 
 import sys
 from src.metrics_to_extract import metrics
@@ -60,6 +61,8 @@ class Parser:
             return self.parse_somalier()
         elif self.tool == TISSUE_CLASSIFIER:
             return self.parse_tissue_classifier()
+        elif self.tool == PIGEON_FILTER_JSON:
+            return self.parse_pigeon_filter_json()
         else:
             sys.exit(f"{self.tool} is not supported. Please add a parser to Parser.py")
 
@@ -308,6 +311,20 @@ class Parser:
                 field, value = line.rstrip().split("\t")
                 if field in metrics[TISSUE_CLASSIFIER]:
                     m = metrics[TISSUE_CLASSIFIER][field]
+                    value_cast = safe_cast(value, m["type"])
+                    qmv = QMValue(m, value_cast)
+                    qm_values.append(qmv)
+        return qm_values
+
+    def parse_pigeon_filter_json(self) -> List[QMValue]:
+        qm_values = []
+        with open(self.path) as fi:
+            pigeon_filter_res = json.load(fi)
+            for column in pigeon_filter_res['tables'][0]['columns']:
+                id = column['id']
+                value = column['values'][0]
+                if id in metrics[PIGEON_FILTER_JSON]:
+                    m = metrics[PIGEON_FILTER_JSON][id]
                     value_cast = safe_cast(value, m["type"])
                     qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
