@@ -424,9 +424,9 @@ def test_pigeon_filter_json():
     data = json.load(qc_file)
     qc_file.close()
 
-    assert data["qc_values"][0]["key"] == "Total Genes [Pigeon]"
+    assert data["qc_values"][0]["key"] == "Unique Genes [Pigeon]"
     assert data["qc_values"][0]["value"] == 26418
-    assert data["qc_values"][1]["key"] == "Total Known Genes [Pigeon]"
+    assert data["qc_values"][1]["key"] == "Known Unique Genes [Pigeon]"
     assert data["qc_values"][1]["value"] == 18204
     assert data["qc_values"][10]["key"] == "Transcripts NIC [Pigeon]"
     assert data["qc_values"][10]["value"] == 139198

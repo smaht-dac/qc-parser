@@ -800,31 +800,31 @@ tissue_classifier_metrics = {
 
 pigeon_filter_json_metrics = {
     "total_unique_genes": {
-        "key": "Total Genes [Pigeon]",
+        "key": "Unique Genes [Pigeon]",
         "tooltip": "Number of unique genes",
         "derived_from": "pigeon_filter_json:total_unique_genes",
         "type": int,
     },
     "total_unique_genes_known": {
-        "key": "Total Known Genes [Pigeon]",
+        "key": "Known Unique Genes [Pigeon]",
         "tooltip": "Number of known unique genes",
         "derived_from": "pigeon_filter_json:total_unique_genes_known",
         "type": int,
     },
     "total_unique_transcripts": {
-        "key": "Total Transcripts [Pigeon]",
+        "key": "Unique Transcripts [Pigeon]",
         "tooltip": "Number of unique transcripts",
         "derived_from": "pigeon_filter_json:total_unique_transcripts",
         "type": int,
     },
     "total_unique_transcripts_known": {
-        "key": "Total Known Transcripts [Pigeon]",
+        "key": "Known Unique Transcripts [Pigeon]",
         "tooltip": "Number of known unique transcripts",
         "derived_from": "pigeon_filter_json:total_unique_transcripts_known",
         "type": int,
     },
     "total_unique_transcripts_novel_greater_1tpm": {
-        "key": "Total Novel Transcripts > 1TMP [Pigeon]",
+        "key": "Novel Unique Transcripts > 1TMP [Pigeon]",
         "tooltip": "Number of novel unique transcripts > 1 TPM",
         "derived_from": "pigeon_filter_json:total_unique_transcripts_novel_greater_1tpm",
         "type": int,
@@ -891,7 +891,7 @@ pigeon_filter_json_metrics = {
     },
     "percent_reads_nnc": {
         "key": "Reads NNC [Pigeon]",
-        "tooltip": "Percentage of reads classified as Novel Not In Catalog",
+        "tooltip": "Percentage of reads classified as novel NOT in catalog",
         "derived_from": "pigeon_filter_json:percent_reads_nnc",
         "type": float,
     },
