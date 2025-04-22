@@ -243,7 +243,7 @@ class Parser:
             for i, field in enumerate(header):
                 if field in metrics[PICARD_COLLECT_INSERT_SIZE_METRICS]:
                     m = metrics[PICARD_COLLECT_INSERT_SIZE_METRICS][field].copy()
-                    m["key"] = f"{m['key']} - {orientation}"
+                    m["key"] = m["key"].replace(" [Picard]", f", {orientation} [Picard]")
                     m["derived_from"] = f"{m['derived_from']}_{orientation}"
                     value_cast = safe_cast(pair[i], m["type"])
                     if value_cast == None:
