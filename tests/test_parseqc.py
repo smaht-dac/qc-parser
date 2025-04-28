@@ -103,7 +103,7 @@ def test_samtools():
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
 
-def test_picard_1():
+def test_picard_asm():
     pv = platform.python_version()
     metrics = "./tests/data/picard_collectAlignmentSummaryMetrics.txt"
     qc_values = f"tmp.picard1.qc_values.{pv}.json"
@@ -125,6 +125,54 @@ def test_picard_1():
 
     # assert data["name"] == "picard_collectAlignmentSummaryMetrics"
     assert len(data["qc_values"]) == 7
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
+def test_picard_ism():
+    pv = platform.python_version()
+    metrics = "./tests/data/picard_CollectInsertSizeMetrics.txt"
+    qc_values = f"tmp.picardISM.qc_values.{pv}.json"
+    metrics_zip = f"tmp.picardISM.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'picard_CollectInsertSizeMetrics' "
+        f"--metrics picard_CollectInsertSizeMetrics {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+    assert len(data["qc_values"]) == 3
+
+    os.system(f"rm -f {qc_values} {metrics_zip}")
+
+
+def test_picard_ism_RF():
+    pv = platform.python_version()
+    metrics = "./tests/data/picard_CollectInsertSizeMetrics_RF.txt"
+    qc_values = f"tmp.picardISM.qc_values.{pv}.json"
+    metrics_zip = f"tmp.picardISM.metrics.{pv}.zip"
+    cmd = (
+        f"parse-qc -n 'picard_CollectInsertSizeMetrics' "
+        f"--metrics picard_CollectInsertSizeMetrics {metrics} "
+        f"--output-zip {metrics_zip} "
+        f"--output-json {qc_values}"
+    )
+    os.system(cmd)
+
+    assert os.path.exists(metrics_zip) == True
+    assert os.path.exists(qc_values) == True
+
+    qc_file = open(qc_values)
+    data = json.load(qc_file)
+    qc_file.close()
+    assert len(data["qc_values"]) == 0 # We are not extracting any metrics from in the RF case
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
