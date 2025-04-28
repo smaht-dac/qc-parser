@@ -172,7 +172,7 @@ def test_picard_ism_RF():
     qc_file = open(qc_values)
     data = json.load(qc_file)
     qc_file.close()
-    assert len(data["qc_values"]) == 0 # We are not extracting any metrics from in the RF case
+    assert len(data["qc_values"]) == 0 # We are not extracting any metrics in the RF case
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
