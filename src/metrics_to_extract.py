@@ -192,21 +192,21 @@ picard_CollectInsertSizeMetrics_metrics = {
     # [5]
     "MEAN_INSERT_SIZE": {
         "key": "Mean Insert Size [Picard]",
-        "tooltip": "The mean insert size for the pair orientation",
+        "tooltip": "The mean insert size for the FR read pairs",
         "derived_from": "picard_collect_insert_size_metrics:mean_insert_size",
         "type": float,
     },
     # [6]
     "STANDARD_DEVIATION": {
         "key": "Insert Size Standard Deviation [Picard]",
-        "tooltip": "Standard deviation of insert sizes for the pair orientation",
+        "tooltip": "Standard deviation of insert sizes for the FR read pairs",
         "derived_from": "picard_collect_insert_size_metrics:standard_deviation",
         "type": float,
     },
     # [7]
     "READ_PAIRS": {
         "key": "Total Number of Read Pairs [Picard]",
-        "tooltip": "The total number of read pairs that were examined for the pair orientation",
+        "tooltip": "The total number of read pairs that were examined for the FR read pairs",
         "derived_from": "picard_collect_insert_size_metrics:read_pairs",
         "type": int,
     },

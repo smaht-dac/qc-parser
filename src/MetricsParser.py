@@ -240,11 +240,11 @@ class Parser:
 
         for pair in pairs:
             orientation = pair[8]
+            if orientation != "FR":
+                continue
             for i, field in enumerate(header):
                 if field in metrics[PICARD_COLLECT_INSERT_SIZE_METRICS]:
-                    m = metrics[PICARD_COLLECT_INSERT_SIZE_METRICS][field].copy()
-                    m["key"] = m["key"].replace(" [Picard]", f", {orientation} [Picard]")
-                    m["derived_from"] = f"{m['derived_from']}_{orientation}"
+                    m = metrics[PICARD_COLLECT_INSERT_SIZE_METRICS][field]
                     value_cast = safe_cast(pair[i], m["type"])
                     if value_cast == None:
                         continue
