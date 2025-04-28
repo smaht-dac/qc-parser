@@ -70,3 +70,14 @@ bamstats_calculated_metrics = [
         "visible": True,
     },
 ]
+
+tissue_classifier_calculated_metrics = [
+    {
+        "key": "List of predicted tissues [Tissue Classifier]",
+        "tooltip": "List of predicted tissues",
+        "derived_from": "tissue_classifier_postprocessed:predicted_tissues_list",
+        "type": str,
+        "formula": "{tissue_classifier:predicted_tissue_1},{tissue_classifier:predicted_tissue_2},{tissue_classifier:predicted_tissue_3}",
+        "visible": False,
+    },
+]

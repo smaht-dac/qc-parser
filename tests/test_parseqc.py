@@ -395,7 +395,7 @@ def test_tissue_classifier():
     qc_file = open(qc_values)
     data = json.load(qc_file)
     qc_file.close()
-
+    print(data)
     assert data["qc_values"][0]["key"] == "Predicted Tissue 1 [Tissue Classifier]"
     assert data["qc_values"][0]["value"] == "Brain"
     assert data["qc_values"][3]["key"] == "Probability of Predicted Tissue 2 [Tissue Classifier]"
