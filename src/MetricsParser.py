@@ -240,6 +240,8 @@ class Parser:
 
         for pair in pairs:
             orientation = pair[8]
+            if orientation != "FR":
+                continue
             for i, field in enumerate(header):
                 if field in metrics[PICARD_COLLECT_INSERT_SIZE_METRICS]:
                     m = metrics[PICARD_COLLECT_INSERT_SIZE_METRICS][field]
