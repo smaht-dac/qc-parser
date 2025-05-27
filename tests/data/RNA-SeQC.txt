@@ -26,7 +26,7 @@
     "End 2 Sense Rate": "0.976684",
     "Avg. Splits per Read": "0.152656",
     "Alternative Alignments": "52179522",
-    "Chimeric Reads": "0",
+    "Chimeric Reads": "1500000",
     "Chimeric Alignment Rate": "0",
     "Duplicate Reads": "0",
     "End 1 Antisense": "45627327",
