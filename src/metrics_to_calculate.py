@@ -70,3 +70,14 @@ bamstats_calculated_metrics = [
         "visible": True,
     },
 ]
+
+rnaseqc_calculated_metrics = [
+    {
+        "key": "Percentage of Chimeric Reads [RNA-SeQC]",
+        "tooltip": "Percentage of chimeric reads out of mapped reads",
+        "derived_from": "rnaseqc_postprocessed:percentage_chimeric_reads",
+        "type": float,
+        "formula": "{rnaseqc:chimeric_reads}/{rnaseqc:mapped_reads}*100",
+        "visible": True,
+    }
+]

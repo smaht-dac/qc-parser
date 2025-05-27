@@ -19,6 +19,7 @@ from src.metrics_to_extract import metrics
 from src.metrics_to_calculate import (
     samtools_stats_calculated_metrics,
     bamstats_calculated_metrics,
+    rnaseqc_calculated_metrics,
 )
 from src.utils import add_calculated_metrics, safe_cast
 from src.QMGeneric import QMValue
@@ -126,6 +127,7 @@ class Parser:
                     value_cast = safe_cast(value, m["type"])
                     qmv = QMValue(m, value_cast)
                     qm_values.append(qmv)
+        add_calculated_metrics(qm_values, rnaseqc_calculated_metrics)
         return qm_values
     
     def parse_verifybamid(self) -> List[QMValue]:

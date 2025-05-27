@@ -341,7 +341,9 @@ def test_rnaseqc():
     assert data["qc_values"][0]["value"] == 0.937137
     assert data["qc_values"][16]["key"] == "Alternative Alignments [RNA-SeQC]"
     assert data["qc_values"][16]["value"] == 52179522
-    assert len(data["qc_values"]) == 46
+    assert data["qc_values"][46]["key"] == "Percentage of Chimeric Reads [RNA-SeQC]"
+    assert data["qc_values"][46]["value"] == 0.9287275184787056
+    assert len(data["qc_values"]) == 47
 
     os.system(f"rm -f {qc_values} {metrics_zip}")
 
