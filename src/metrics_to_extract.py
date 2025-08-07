@@ -236,7 +236,6 @@ bamstats_metrics = {
         "tooltip": "Estimated average coverage",
         "derived_from": "bamstats:estimate_average_coverage",
         "type": float,
-        "visible": True,
     },
     "Total_Number_Of_Reads": {
         "key": "Total Number of Reads [bamstats]",
@@ -747,6 +746,7 @@ mosdepth_metrics = {
         "tooltip": "Estimated average coverage",
         "derived_from": "mosdepth:total",
         "type": float,
+        "visible": True,
     },
 }
 

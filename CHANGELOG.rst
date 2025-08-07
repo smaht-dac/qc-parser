@@ -1,3 +1,9 @@
+0.8.3
+=====
+
+* Set mosdepth total coverage metric to visible
+
+
 0.7.0
 =====
 
